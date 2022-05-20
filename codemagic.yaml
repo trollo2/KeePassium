@@ -13,7 +13,7 @@ workflows:
 
             - name: Build ipa for distribution
               script: |
-                                xcode-project build-ipa --workspace "KeePassium.xcworkspace" --scheme "MyScheme"
+                                xcode-project build-ipa --workspace "KeePassium.xcworkspace"
         artifacts:
             - /tmp/xcodebuild_logs/*.log
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
