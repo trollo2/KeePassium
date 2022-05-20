@@ -8,11 +8,9 @@ workflows:
                XCODE_WORKSPACE: "KeePassium.xcworkspace" # <-- Put the name of your Xcode workspace here
                XCODE_SCHEME: "your_workspace_name" # <-- Put the name of your Xcode scheme here
             xcode: 13.0
-            cocoapods: default
+
         scripts:
-            - name: Install CocoaPods dependencies
-              script: |
-                                pod install
+
             - name: Build ipa for distribution
               script: |
                                 xcode-project build-ipa --workspace "KeePassium.xcworkspace" --scheme "MyScheme"
