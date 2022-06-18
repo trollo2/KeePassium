@@ -11,7 +11,7 @@ workflows:
         scripts:
             - name: Build ipa for distribution
               script: |
-                                xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -sdk iphonesimulator -destination 'platform=iOS,name=Any iOS Device ' -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO 
+                                xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS:15.5,Name=iPhone 8' -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO 
         artifacts:
             - /tmp/xcodebuild_logs/*.log
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
