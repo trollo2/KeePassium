@@ -6,14 +6,14 @@ workflows:
         environment:
             vars:
                XCODE_WORKSPACE: "KeePassium.xcworkspace" # <-- Put the name of your Xcode workspace here
-              
+               XCODE_SCHEME: "KeePassiumPro"
             xcode: 13.0
 
         scripts:
 
             - name: Build ipa for distribution
               script: |
-                                xcodebuild build -workspace "KeePassium.xcworkspace" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+                                xcodebuild build -workspace $XCODE_WORKSPACE -scheme $XCODE_SCHEME CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         artifacts:
             - /tmp/xcodebuild_logs/*.log
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
