@@ -8,6 +8,7 @@ workflows:
                XCODE_WORKSPACE: "KeePassium.xcworkspace" # <-- Put the name of your Xcode workspace here
                XCODE_SCHEME: "KeePassiumPro" #the name of your Xcode scheme here
             xcode: 13.0
+        scripts:
             - name: Build ipa for distribution
               script: |
                                 xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7 Pro,OS=15.4.1' -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO 
