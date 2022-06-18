@@ -6,7 +6,7 @@ workflows:
         environment:
             vars:
                XCODE_WORKSPACE: "KeePassium.xcworkspace" # <-- Put the name of your Xcode workspace here
-               XCODE_SCHEME: "KeePassiumPro"# the name of your Xcode scheme here
+               XCODE_SCHEME: "KeePassiumPro" #the name of your Xcode scheme here
             xcode: 13.0
             cocoapods: default
         scripts:
