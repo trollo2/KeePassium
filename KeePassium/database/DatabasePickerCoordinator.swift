@@ -131,6 +131,41 @@ final class DatabasePickerCoordinator: NSObject, Coordinator, Refreshable {
     }
     #endif
     
+    private func showDiagnostics(in viewController: UIViewController) {
+        let modalRouter = NavigationRouter.createModal(style: .formSheet)
+        let diagnosticsViewerCoordinator = DiagnosticsViewerCoordinator(router: modalRouter)
+        diagnosticsViewerCoordinator.dismissHandler = { [weak self] coordinator in
+            self?.removeChildCoordinator(coordinator)
+        }
+        diagnosticsViewerCoordinator.start()
+        
+        viewController.present(modalRouter, animated: true, completion: nil)
+        addChildCoordinator(diagnosticsViewerCoordinator)
+    }
+    
+    func showPasswordGenerator(
+        at popoverAnchor: PopoverAnchor,
+        in viewController: UIViewController
+    ) {
+        let modalRouter: NavigationRouter
+        let isNarrow = viewController.splitViewController?.isCollapsed ?? false
+        if isNarrow, #available(iOS 15, *) {
+            modalRouter = NavigationRouter.createModal(style: .pageSheet, at: popoverAnchor)
+            let sheet = modalRouter.navigationController.sheetPresentationController   
+            sheet?.detents = [.medium(), .large()]
+            sheet?.prefersGrabberVisible = true
+        } else {
+            modalRouter = NavigationRouter.createModal(style: .popover, at: popoverAnchor)
+        }
+        let passGenCoordinator = PasswordGeneratorCoordinator(router: modalRouter, quickMode: true)
+        passGenCoordinator.dismissHandler = { [weak self] coordinator in
+            self?.removeChildCoordinator(coordinator)
+        }
+        passGenCoordinator.start()
+        addChildCoordinator(passGenCoordinator)
+        viewController.present(modalRouter, animated: true, completion: nil)
+    }
+    
     private func hasValidDatabases() -> Bool {
         let accessibleDatabaseRefs = FileKeeper.shared
             .getAllReferences(fileType: .database, includeBackup: false)
@@ -162,6 +197,41 @@ final class DatabasePickerCoordinator: NSObject, Coordinator, Refreshable {
         documentPicker.delegate = self
         documentPicker.modalPresentationStyle = .pageSheet
         presenter.present(documentPicker, animated: true, completion: nil)
+    }
+    
+    public func maybeAddRemoteDatabase(presenter: UIViewController) {
+        guard needsPremiumToAddDatabase() else {
+            addRemoteDatabase(presenter: presenter)
+            return
+        }
+
+        performPremiumActionOrOfferUpgrade(for: .canUseMultipleDatabases, in: presenter) {
+            [weak self, weak presenter] in
+            guard let self = self,
+                  let presenter = presenter
+            else {
+                return
+            }
+            self.addRemoteDatabase(presenter: presenter)
+        }
+    }
+    
+    public func addRemoteDatabase(presenter: UIViewController) {
+        guard Settings.current.isNetworkAccessAllowed else {
+            Diag.error("Network access denied")
+            presenter.showErrorAlert(FileAccessError.networkAccessDenied)
+            return
+        }
+        let modalRouter = NavigationRouter.createModal(style: .formSheet)
+        let connectionCreatorCoordinator = RemoteFilePickerCoordinator(router: modalRouter)
+        connectionCreatorCoordinator.delegate = self
+        connectionCreatorCoordinator.dismissHandler = { [weak self] coordinator in
+            self?.removeChildCoordinator(coordinator)
+        }
+        connectionCreatorCoordinator.start()
+        
+        presenter.present(modalRouter, animated: true, completion: nil)
+        addChildCoordinator(connectionCreatorCoordinator)
     }
     
     private func addDatabaseFile(_ url: URL, mode: FileKeeper.OpenMode) {
@@ -213,15 +283,21 @@ final class DatabasePickerCoordinator: NSObject, Coordinator, Refreshable {
     private func showFileInfo(
         _ fileRef: URLReference,
         at popoverAnchor: PopoverAnchor,
-        in viewController: DatabasePickerVC
+        in viewController: UIViewController
     ) {
-        let fileInfoVC = FileInfoVC.make(urlRef: fileRef, fileType: .database, at: popoverAnchor)
-        fileInfoVC.canExport = true
-        fileInfoVC.didDeleteCallback = { [weak self, weak fileInfoVC] in
-            self?.refresh()
-            fileInfoVC?.dismiss(animated: true, completion: nil)
+        let modalRouter = NavigationRouter.createModal(style: .popover, at: popoverAnchor)
+        let fileInfoCoordinator = FileInfoCoordinator(
+            fileRef: fileRef,
+            fileType: .database,
+            allowExport: true,
+            router: modalRouter)
+        fileInfoCoordinator.delegate = self
+        fileInfoCoordinator.dismissHandler = { [weak self] coordinator in
+            self?.removeChildCoordinator(coordinator)
         }
-        viewController.present(fileInfoVC, animated: true, completion: nil)
+        fileInfoCoordinator.start()
+        viewController.present(modalRouter, animated: true, completion: nil)
+        addChildCoordinator(fileInfoCoordinator)
     }
     
     private func showDatabaseSettings(
@@ -296,15 +372,6 @@ extension DatabasePickerCoordinator: DatabasePickerDelegate {
         return needsPremiumToAddDatabase()
     }
     
-    func didPressSetupAppLock(in viewController: DatabasePickerVC) {
-        let passcodeInputVC = PasscodeInputVC.instantiateFromStoryboard()
-        passcodeInputVC.delegate = self
-        passcodeInputVC.mode = .setup
-        passcodeInputVC.modalPresentationStyle = .formSheet
-        passcodeInputVC.isCancelAllowed = true
-        viewController.present(passcodeInputVC, animated: true, completion: nil)
-    }
-    
     #if MAIN_APP
     func didPressHelp(at popoverAnchor: PopoverAnchor, in viewController: DatabasePickerVC) {
         showAboutScreen(at: popoverAnchor, in: viewController)
@@ -319,12 +386,27 @@ extension DatabasePickerCoordinator: DatabasePickerDelegate {
     }
     #endif
     
+    func didPressPasswordGenerator(
+        at popoverAnchor: PopoverAnchor,
+        in viewController: DatabasePickerVC
+    ) {
+        showPasswordGenerator(at: popoverAnchor, in: viewController)
+    }
+    
     func didPressCancel(in viewController: DatabasePickerVC) {
         router.pop(viewController: databasePickerVC, animated: true)
     }
     
+    func didPressShowDiagnostics(in viewController: DatabasePickerVC) {
+        showDiagnostics(in: viewController)
+    }
+    
     func didPressAddExistingDatabase(in viewController: DatabasePickerVC) {
         maybeAddExistingDatabase(presenter: viewController)
+    }
+    
+    func didPressAddRemoteDatabase(in viewController: DatabasePickerVC) {
+        maybeAddRemoteDatabase(presenter: viewController)
     }
 
     func didPressRevealDatabaseInFinder(
@@ -423,41 +505,6 @@ extension DatabasePickerCoordinator: DatabasePickerDelegate {
     }
 }
 
-
-extension DatabasePickerCoordinator: PasscodeInputDelegate {
-    func passcodeInputDidCancel(_ sender: PasscodeInputVC) {
-        do {
-            try Keychain.shared.removeAppPasscode() 
-        } catch {
-            Diag.error(error.localizedDescription)
-            databasePickerVC.showErrorAlert(error, title: LString.titleKeychainError)
-            return
-        }
-        sender.dismiss(animated: true, completion: nil)
-        refresh()
-    }
-    
-    func passcodeInput(_sender: PasscodeInputVC, canAcceptPasscode passcode: String) -> Bool {
-        return passcode.count > 0
-    }
-    
-    func passcodeInput(_ sender: PasscodeInputVC, didEnterPasscode passcode: String) {
-        sender.dismiss(animated: true) {
-            [weak self] in
-            do {
-                let keychain = Keychain.shared
-                try keychain.setAppPasscode(passcode)
-                keychain.prepareBiometricAuth(true)
-                Settings.current.isBiometricAppLockEnabled = true
-                self?.refresh()
-            } catch {
-                Diag.error(error.localizedDescription)
-                self?.databasePickerVC.showErrorAlert(error, title: LString.titleKeychainError)
-            }
-        }
-    }
-}
-
 extension DatabasePickerCoordinator: UIDocumentPickerDelegate {
     func documentPicker(
         _ controller: UIDocumentPickerViewController,
@@ -482,6 +529,12 @@ extension DatabasePickerCoordinator: DatabaseCreatorCoordinatorDelegate {
 }
 #endif
 
+extension DatabasePickerCoordinator: FileInfoCoordinatorDelegate {
+    func didEliminateFile(_ fileRef: URLReference, in coordinator: FileInfoCoordinator) {
+        refresh()
+    }
+}
+
 extension DatabasePickerCoordinator: DatabaseSettingsCoordinatorDelegate {
     func didChangeDatabaseSettings(in coordinator: DatabaseSettingsCoordinator) {
         refresh()
@@ -500,5 +553,16 @@ extension DatabasePickerCoordinator: FileKeeperObserver {
             selectDatabase(nil, animated: false)
         }
         refresh()
+    }
+}
+
+extension DatabasePickerCoordinator: RemoteFilePickerCoordinatorDelegate {
+    func didPickRemoteFile(
+        url: URL,
+        credential: NetworkCredential,
+        in coordinator: RemoteFilePickerCoordinator
+    ) {
+        CredentialManager.shared.store(credential: credential, for: url)
+        addDatabaseFile(url, mode: .openInPlace)
     }
 }

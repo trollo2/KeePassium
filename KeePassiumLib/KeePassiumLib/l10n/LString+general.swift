@@ -203,6 +203,17 @@ extension LString {
         comment: "Title of a list with predefined quick-choice values (for example: 'Presets: 1 week, 1 months, 1 year')"
     )
 
+    public static let statusFeatureOn = NSLocalizedString(
+        "[General/Feature/On]",
+        bundle: Bundle.framework,
+        value: "On",
+        comment: "Feature status: enabled/active. Keep it short, possibly abbreviated.")
+    public static let statusFeatureOff = NSLocalizedString(
+        "[General/Feature/Off]",
+        bundle: Bundle.framework,
+        value: "Off",
+        comment: "Feature status: disabled/inactive. Keep it short, possibly abbreviated.")
+
     public static let titleError = NSLocalizedString(
         "[Generic/title] Error",
         bundle: Bundle.framework,
@@ -493,6 +504,18 @@ extension LString {
         value: "Take Photo",
         comment: "Action/button to take a new photo from camera"
     )
+    public static let actionCopyFieldReference = NSLocalizedString(
+        "[Entry/Field/CopyReference/action]",
+        bundle: Bundle.framework,
+        value: "Copy Field Reference",
+        comment: "Action: copy a reference to the selected entry field to clipboard"
+    )
+    public static let fieldReferenceCopiedToClipboard = NSLocalizedString(
+        "[Entry/Field/CopyReference/acknowledgement]",
+        bundle: Bundle.framework,
+        value: "Field reference copied to clipboard",
+        comment: "Notification: a reference to an entry field has been copied to clipboard"
+    )
     public static let defaultNewEntryName = NSLocalizedString(
         "[Entry/New/defaultTitle] New Entry",
         bundle: Bundle.framework,
@@ -549,7 +572,25 @@ extension LString {
         value: "Notes",
         comment: "Name of an entry field"
     )
-    
+    public static let fieldOTP = NSLocalizedString(
+        "[OTP/FieldName]",
+        bundle: Bundle.framework,
+        value: "One-Time Password",
+        comment: "Name of an entry field"
+    )
+    public static let fieldTOTP = NSLocalizedString(
+        "[TOTP/FieldName]",
+        bundle: Bundle.framework,
+        value: "One-Time Password (TOTP)",
+        comment: "Name of an entry field. Acronym `TOTP` should not be translated."
+    )
+    public static let fieldHOTP = NSLocalizedString(
+        "[HOTP/FieldName]",
+        bundle: Bundle.framework,
+        value: "One-Time Password (HOTP)",
+        comment: "Name of an entry field. Acronym `HOTP` should not be translated."
+    )
+
     public static let previousItemVersionRestored = NSLocalizedString(
         "[Item/History/Restored]",
         bundle: Bundle.framework,
@@ -598,7 +639,7 @@ extension LString {
         value: "Exclude From iCloud/iTunes Backup",
         comment: "Title of a setting: is the file exluded from iCloud/iTunes backup. For example: `Exclude From Backup: <Yes>`"
     )
-    public static let titleBackupSettings = NSLocalizedString(
+    public static let titleFileBackupSettings = NSLocalizedString(
         "[FileInfo/Backup/header]",
         bundle: Bundle.framework,
         value: "Backup",
@@ -734,4 +775,11 @@ extension LString {
         bundle: Bundle.framework,
         value: "Face ID",
         comment: "Name of biometric authentication method. Trademarked, do not translate unless Apple traslated it to your language.")
+    
+    
+    public static let copyrightNotice = NSLocalizedString(
+        "[About/CopyrightAuthor]",
+        bundle: Bundle.framework,
+        value: "©Andrei Popleteev",
+        comment: "Copyright notice")
 }

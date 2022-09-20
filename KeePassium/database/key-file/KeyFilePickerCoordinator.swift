@@ -58,7 +58,33 @@ class KeyFilePickerCoordinator: NSObject, Coordinator {
     
     @objc
     private func didPressDismissButton() {
-        router.dismiss(animated: true)
+        dismiss(animated: true)
+    }
+    
+    private func dismiss(animated: Bool) {
+        router.pop(viewController: keyFilePickerVC, animated: animated)
+    }
+}
+
+extension KeyFilePickerCoordinator {
+    private func showFileInfo(
+        _ fileRef: URLReference,
+        at popoverAnchor: PopoverAnchor,
+        in viewController: UIViewController
+    ) {
+        let modalRouter = NavigationRouter.createModal(style: .popover, at: popoverAnchor)
+        let fileInfoCoordinator = FileInfoCoordinator(
+            fileRef: fileRef,
+            fileType: .keyFile,
+            allowExport: false,
+            router: modalRouter)
+        fileInfoCoordinator.delegate = self
+        fileInfoCoordinator.dismissHandler = { [weak self] coordinator in
+            self?.removeChildCoordinator(coordinator)
+        }
+        fileInfoCoordinator.start()
+        viewController.present(modalRouter, animated: true, completion: nil)
+        addChildCoordinator(fileInfoCoordinator)
     }
 }
 
@@ -83,7 +109,7 @@ extension KeyFilePickerCoordinator: KeyFilePickerDelegate {
     
     func didSelectFile(_ selectedFile: URLReference?, in keyFilePicker: KeyFilePickerVC) {
         delegate?.didPickKeyFile(selectedFile, in: self)
-        router.dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     func didPressFileInfo(
@@ -91,15 +117,7 @@ extension KeyFilePickerCoordinator: KeyFilePickerDelegate {
         at popoverAnchor: PopoverAnchor,
         in keyFilePicker: KeyFilePickerVC
     ) {
-        let fileInfoVC = FileInfoVC.make(urlRef: keyFile, fileType: .keyFile, at: popoverAnchor)
-        fileInfoVC.canExport = false
-        fileInfoVC.didDeleteCallback = { [weak self, weak fileInfoVC] in
-            guard let self = self else { return }
-            fileInfoVC?.dismiss(animated: true, completion: nil)
-            self.keyFilePickerVC.refresh()
-            self.delegate?.didEliminateKeyFile(keyFile, in: self)
-        }
-        router.present(fileInfoVC, animated: true, completion: nil)
+        showFileInfo(keyFile, at: popoverAnchor, in: keyFilePicker)
     }
     
     func didPressEliminate(
@@ -171,7 +189,7 @@ extension KeyFilePickerCoordinator: UIDocumentPickerDelegate {
             switch result {
             case .success(let fileRef):
                 self.delegate?.didPickKeyFile(fileRef, in: self)
-                self.router.dismiss(animated: true)
+                self.dismiss(animated: true)
             case .failure(let fileAccessError):
                 let message = String.localizedStringWithFormat(
                     LString.Error.failedToOpenFileReasonTemplate,
@@ -188,5 +206,12 @@ extension KeyFilePickerCoordinator: UIDocumentPickerDelegate {
             message: LString.dontUseDatabaseAsKeyFile,
             dismissButtonTitle: LString.actionOK)
         keyFilePickerVC.present(warningAlert, animated: true)
+    }
+}
+
+extension KeyFilePickerCoordinator: FileInfoCoordinatorDelegate {
+    func didEliminateFile(_ fileRef: URLReference, in coordinator: FileInfoCoordinator) {
+        keyFilePickerVC.refresh()
+        delegate?.didEliminateKeyFile(fileRef, in: self)
     }
 }

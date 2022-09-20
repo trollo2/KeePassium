@@ -53,6 +53,7 @@ public class Settings {
     public enum Keys: String {
         case testEnvironment
         case settingsVersion
+        case bundleCreationTimestamp
         case firstLaunchTimestamp
         
         case filesSortOrder
@@ -74,6 +75,7 @@ public class Settings {
         case lockAppOnLaunch
         case databaseLockTimeout
         case lockDatabasesOnTimeout
+        case passcodeKeyboardType
         
         case clipboardTimeout
         case universalClipboardEnabled
@@ -101,13 +103,9 @@ public class Settings {
         
         case hapticFeedbackEnabled
         
-        case passwordGeneratorLength
-        case passwordGeneratorIncludeLowerCase
-        case passwordGeneratorIncludeUpperCase
-        case passwordGeneratorIncludeSpecials
-        case passwordGeneratorIncludeDigits
-        case passwordGeneratorIncludeLookAlike
-        case passcodeKeyboardType
+        case passwordGeneratorConfig
+        
+        case networkAccessAllowed
         
         case hideAppLockSetupReminder
         case textScale
@@ -233,7 +231,7 @@ public class Settings {
             immediately, /*after5seconds, after15seconds, */after30seconds,
             after1minute, after2minutes, after5minutes, after10minutes,
             after30minutes, after1hour, after2hours, after4hours, after8hours,
-            after24hours, after7days, never]
+            after24hours, after48hours, after7days, never]
         case never = -1
         case immediately = 0
         case after5seconds = 5
@@ -249,6 +247,7 @@ public class Settings {
         case after4hours = 14400
         case after8hours = 28800
         case after24hours = 86400
+        case after48hours = 172800
         case after7days = 604800
 
         public var seconds: Int {
@@ -748,7 +747,7 @@ public class Settings {
     
     public private(set) var isTestEnvironment: Bool
     
-    public var isFirstLaunch: Bool { return _isFirstLaunch }
+    public private(set) var isFirstLaunch: Bool
     
     public var settingsVersion: Int {
         get {
@@ -1443,89 +1442,25 @@ public class Settings {
     }
     
     
-    public var passwordGeneratorLength: Int {
+    public var passwordGeneratorConfig: PasswordGeneratorParams {
         get {
-            let stored = UserDefaults.appGroupShared
-                .object(forKey: Keys.passwordGeneratorLength.rawValue)
-                as? Int
-            return stored ?? PasswordGenerator.defaultLength
+            let storedData = UserDefaults.appGroupShared
+                .object(forKey: Keys.passwordGeneratorConfig.rawValue)
+                as? Data
+            let storedConfig = PasswordGeneratorParams.deserialize(from: storedData)
+            return storedConfig ?? PasswordGeneratorParams()
         }
         set {
-            updateAndNotify(
-                oldValue: passwordGeneratorLength,
-                newValue: newValue,
-                key: .passwordGeneratorLength)
+            let hasChanged = newValue != passwordGeneratorConfig
+            UserDefaults.appGroupShared.set(
+                newValue.serialize(),
+                forKey: Keys.passwordGeneratorConfig.rawValue
+            )
+            if hasChanged {
+                postChangeNotification(changedKey: Keys.passwordGeneratorConfig)
+            }
         }
-    }
-    public var passwordGeneratorIncludeLowerCase: Bool {
-        get {
-            let stored = UserDefaults.appGroupShared
-                .object(forKey: Keys.passwordGeneratorIncludeLowerCase.rawValue)
-                as? Bool
-            return stored ?? true
-        }
-        set {
-            updateAndNotify(
-                oldValue: passwordGeneratorIncludeLowerCase,
-                newValue: newValue,
-                key: .passwordGeneratorIncludeLowerCase)
-        }
-    }
-    public var passwordGeneratorIncludeUpperCase: Bool {
-        get {
-            let stored = UserDefaults.appGroupShared
-                .object(forKey: Keys.passwordGeneratorIncludeUpperCase.rawValue)
-                as? Bool
-            return stored ?? true
-        }
-        set {
-            updateAndNotify(
-                oldValue: passwordGeneratorIncludeUpperCase,
-                newValue: newValue,
-                key: .passwordGeneratorIncludeUpperCase)
-        }
-    }
-    public var passwordGeneratorIncludeSpecials: Bool {
-        get {
-            let stored = UserDefaults.appGroupShared
-                .object(forKey: Keys.passwordGeneratorIncludeSpecials.rawValue)
-                as? Bool
-            return stored ?? true
-        }
-        set {
-            updateAndNotify(
-                oldValue: passwordGeneratorIncludeSpecials,
-                newValue: newValue,
-                key: .passwordGeneratorIncludeSpecials)
-        }
-    }
-    public var passwordGeneratorIncludeDigits: Bool {
-        get {
-            let stored = UserDefaults.appGroupShared
-                .object(forKey: Keys.passwordGeneratorIncludeDigits.rawValue)
-                as? Bool
-            return stored ?? true
-        }
-        set {
-            updateAndNotify(
-                oldValue: passwordGeneratorIncludeDigits,
-                newValue: newValue,
-                key: .passwordGeneratorIncludeDigits)
-        }
-    }
-    public var passwordGeneratorIncludeLookAlike: Bool {
-        get {
-            let stored = UserDefaults.appGroupShared
-                .object(forKey: Keys.passwordGeneratorIncludeLookAlike.rawValue)
-                as? Bool
-            return stored ?? false
-        }
-        set {
-            updateAndNotify(
-                oldValue: passwordGeneratorIncludeLookAlike,
-                newValue: newValue,
-                key: .passwordGeneratorIncludeLookAlike)
-        }
+
     }
     
     public var passcodeKeyboardType: PasscodeKeyboardType {
@@ -1548,7 +1483,22 @@ public class Settings {
     }
     
     
-    private var _isFirstLaunch: Bool
+    public var isNetworkAccessAllowed: Bool {
+        get {
+            let stored = UserDefaults.appGroupShared
+                .object(forKey: Keys.networkAccessAllowed.rawValue) as? Bool
+            return stored ?? false
+        }
+        set {
+            updateAndNotify(
+                oldValue: isNetworkAccessAllowed,
+                newValue: newValue,
+                key: .networkAccessAllowed
+            )
+        }
+    }
+    
+    
     private init() {
         #if DEBUG
         isTestEnvironment = true
@@ -1564,9 +1514,47 @@ public class Settings {
         }
         #endif
         
-        let versionInfo = UserDefaults.appGroupShared
-            .object(forKey: Keys.settingsVersion.rawValue) as? Int
-        _isFirstLaunch = (versionInfo == nil)
+        isFirstLaunch = Settings.maybeHandleFirstLaunch()
+    }
+    
+    private static func maybeHandleFirstLaunch() -> Bool {
+        guard ProcessInfo.isRunningOnMac else {
+            let versionInfo = UserDefaults.appGroupShared
+                .object(forKey: Keys.settingsVersion.rawValue) as? Int
+            return (versionInfo == nil)
+        }
+            
+        
+        guard let bundleAttributes = try? FileManager.default
+                .attributesOfItem(atPath: Bundle.main.bundlePath),
+              let bundleCreationDate = bundleAttributes[.creationDate] as? Date
+        else {
+            Diag.warning("Failed to read app bundle creation date, ignoring")
+            UserDefaults.eraseAppGroupShared()
+            return true
+        }
+        
+        let storedCreationDate: Date? = UserDefaults.appGroupShared
+            .object(forKey: Keys.bundleCreationTimestamp.rawValue)
+            as? Date
+        let storedDateExists = storedCreationDate != nil
+        let bundleDateChanged = storedDateExists &&
+            (bundleCreationDate.timeIntervalSince(storedCreationDate!) > 1.0)
+        switch (storedDateExists, bundleDateChanged) {
+        case (false, _):
+            Diag.info("First launch ever")
+            break
+        case (true, true):
+            Diag.info("App was reinstalled, handling as a first launch")
+            break
+        case (true, false):
+            return false
+        }
+        UserDefaults.eraseAppGroupShared()
+        UserDefaults.appGroupShared.set(
+            bundleCreationDate,
+            forKey: Keys.bundleCreationTimestamp.rawValue)
+        return true
     }
 
     

@@ -15,9 +15,6 @@ enum MenuIdentifier {
 }
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    let helpURL = URL(string: "https://keepassium.com/apphelp/")!
-
     var window: UIWindow?
     
     private var mainCoordinator: MainCoordinator!
@@ -105,9 +102,29 @@ extension AppDelegate {
 
     @available(iOS 13, *)
     override func buildMenu(with builder: UIMenuBuilder) {
+        guard builder.system == UIMenuSystem.main else {
+            return
+        }
+
         builder.remove(menu: .format)
         builder.remove(menu: .openRecent)
-
+        builder.remove(menu: .spelling)
+        builder.remove(menu: .spellingOptions)
+        builder.remove(menu: .spellingPanel)
+        builder.remove(menu: .substitutions)
+        builder.remove(menu: .substitutionOptions)
+        builder.remove(menu: .transformations)
+        builder.remove(menu: .speech)
+        builder.remove(menu: .toolbar)
+        
+        if #available(iOS 15.0, *) {
+            builder.replaceChildren(ofMenu: .standardEdit) { children -> [UIMenuElement] in
+                children.filter {
+                    ($0 as? UIKeyCommand)?.action != #selector(UIResponderStandardEditActions.pasteAndMatchStyle(_:))
+                }
+            }
+        }
+        
         let aboutAppMenuTitle = builder.menu(for: .about)?.children.first?.title
             ?? String.localizedStringWithFormat(LString.menuAboutAppTemplate, AppInfo.name)
         let aboutAppMenuAction = UICommand(
@@ -179,7 +196,7 @@ extension AppDelegate {
     
     @objc
     private func showAppHelp() {
-        UIApplication.shared.open(helpURL, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL.AppHelp.helpIndex, options: [:], completionHandler: nil)
     }
     
     @objc

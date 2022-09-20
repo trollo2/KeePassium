@@ -1,8 +1,20 @@
+/* Menu item that shows info about KeePassium app */
+"[About/altTitle]" = "O aplikácii";
+
+/* Copyright notice */
+"[About/CopyrightAuthor]" = "©Andrei Popleteev";
+
 /* Suggestion/hint for available user action */
 "[Accessibility] Double tap to copy to clipboard" = "Dvojitým poklepaním skopírujete do schránky";
 
+/* Call to action: perform accessibilty `activate` action to listen to text/content. */
+"[Accessibility/activateToListen]" = "Aktivujte, k chcete počúvať.";
+
 /* Title of a setting option: font size */
 "[Appearance/TextSize/title]" = "Veľkosť písma";
+
+/* Group of settings for user interface appearance (text size, icons, etc) */
+"[Appearance/title]" = "Vzhľad";
 
 /* Action/button to unlock the App Lock with passcode */
 "[AppLock] Unlock" = "Odomknúť";
@@ -81,6 +93,9 @@
 
 /* Notification: an item has been copied to clipboard */
 "[Clipboard/Copy/notification]" = "Skopírované";
+
+/* Subtitle for `Contact Us`. Keep it short. */
+"[ContactUs/subtitle]" = "Návrhy? Problémy? Dajte nám vedieť!";
 
 /* Error message about AES cipher. [errorCode: Int] */
 "[CryptoError] AES decryption error (code %d)" = "Chyba AES dešifrovania (kód %d)";
@@ -421,6 +436,12 @@
 /* Error message: user provided a wrong master key for decryption. */
 "[DatabaseError] Invalid password or key file" = "Chybné heslo alebo súbor s kľúčom";
 
+/* Subtitle for `Diagnostic Log`. Keep it short. */
+"[DiagLog/subtitle]" = "Pre odborné riešenie problémov";
+
+/* Title of the diagnostic info screen */
+"[DiagLog/title]" = "Diagnostické správy";
+
 /* Notification/confirmation message */
 "[Diagnostics] Diagnostic log has been copied to clipboard." = "Diagnostické správy boli skopírované do schránky.";
 
@@ -453,6 +474,12 @@
 
 /* Default name of a newly created entry field */
 "[Entry/Edit/CreateField/defaultName] Field Name" = "Názov poľa";
+
+/* Notification: a reference to an entry field has been copied to clipboard */
+"[Entry/Field/CopyReference/acknowledgement]" = "Odkaz na pole bol skopírovaný do schránky";
+
+/* Action: copy a reference to the selected entry field to clipboard */
+"[Entry/Field/CopyReference/action]" = "Kopírovať odkaz na pole";
 
 /* Name of an entry field */
 "[Entry/Field/name] Notes" = "Poznámky";
@@ -520,6 +547,9 @@
 /* Error message shown when there's internal inconsistency in KeePassium. */
 "[FileAccessError/internalError]" = "Interná chyba v aplikácii KeePassium, prosím, povedzte nám o nej.";
 
+/* Error message: network access is forbidden by system or app settings. */
+"[FileAccessError/NetworkAccessDenied/generic]" = "Prístup na sieť je blokovaný nastaveniami.";
+
 /* Error message: storage provider app (e.g. Google Drive) does not respond to requests. */
 "[FileAccessError/NoResponse/genericFileProvider]" = "Poskytovateľ úložiska neodpovedá.";
 
@@ -567,6 +597,9 @@
 
 /* Title of a setting: is the file exluded from iCloud/iTunes backup. For example: `Exclude From Backup: <Yes>` */
 "[FileInfo/isExcludedFromBackup/title]" = "Vylúčiť zo zálohy iCloud/iTunes";
+
+/* Title of a dialog with file details (name, size, dates) */
+"[FileInfo/title]" = "Informácie o súbore";
 
 /* Error message [reason: String] */
 "[FileKeeper] Failed to delete file. Reason: %@" = "Nepodarilo sa vymazať súbor. Dôvod: %@";
@@ -681,6 +714,12 @@
 
 /* Title of the dialog for picking the destination group for move/copy operations */
 "[General/DestinationGroup/title] Choose a Destination" = "Vyberte cieľ";
+
+/* Feature status: disabled/inactive. Keep it short, possibly abbreviated. */
+"[General/Feature/Off]" = "Vypnuté";
+
+/* Feature status: enabled/active. Keep it short, possibly abbreviated. */
+"[General/Feature/On]" = "Zapnuté";
 
 /* Action/button to cancel whatever is going on */
 "[Generic] Cancel" = "Zrušiť";
@@ -862,6 +901,9 @@
 /* Generic title of in-app help article */
 "[Help Viewer/title]" = "Pomoc";
 
+/* Name of an entry field. Acronym `HOTP` should not be translated. */
+"[HOTP/FieldName]" = "Jednorazové heslo (HOTP)";
+
 /* Notification that an archived/historical item (e.g entry) has been successfully restored */
 "[Item/History/Restored]" = "Predchádzajúca verzia obnovená";
 
@@ -901,6 +943,9 @@
 /* Menu item: show information about file (name, size, dates) */
 "[Menu/FileInfo/title]" = "Informácie o súbore";
 
+/* Name of an entry field */
+"[OTP/FieldName]" = "Jednorazové heslo";
+
 /* Error shown when scanned QR code cannot be used for OTP */
 "[OTP/Scan/InvalidData]" = "Tento QR kód nie je vhodný na nastavenie OTP.";
 
@@ -909,6 +954,114 @@
 
 /* Call for action. Acronym `OTP` should not be translated. */
 "[OTP/Setup]" = "Nastaviť jednorazové heslo (OTP)";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/CannotGenerateText/title]" = "Nie je možné vygenerovať text";
+
+/* Description of an empty character set for password generator. 'Empty' as 'there are no characters'. */
+"[PasswordGenerator/CustomSet/Empty/title]" = "Prázdne";
+
+/* User-defined set of characters for password generator. */
+"[PasswordGenerator/CustomSet/title]" = "Vlastné znaky";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/DesiredLengthTooShort/title]" = "Zvýšte parameter dĺžky aspoň na %d.";
+
+/* Action/button: generate random text/password/phrase */
+"[PasswordGenerator/Generate/action]" = "Generovať";
+
+/* Description of randomly generated text/password/phrase */
+"[PasswordGenerator/GeneratedText/title]" = "Generovať text";
+
+/* Inclusion criterion for a password generator. For example: `Digits: Allowed` */
+"[PasswordGenerator/InclusionCondition/allowed]" = "Povolené";
+
+/* Inclusion criterion for a password generator. For example: `Uppercase Letters: Excluded` */
+"[PasswordGenerator/InclusionCondition/excluded]" = "Vylúčené";
+
+/* Inclusion criterion for a password generator — a disabled/inactive one that won't be taken into account. For example: `Uppercase Letters: Inactive` */
+"[PasswordGenerator/InclusionCondition/inactive]" = "Neaktívne";
+
+/* Inclusion criterion for a password generator. For example: `Special Symbols: Required` */
+"[PasswordGenerator/InclusionCondition/required]" = "Povinné";
+
+/* Length (number of characters) of the random text to generate */
+"[PasswordGenerator/Length/title]" = "Dĺžka";
+
+/* Description of a password generator parameter. For example, the digit in 'abc222def'. */
+"[PasswordGenerator/MaxConsecutive/description]" = "Maximálny počet identických znakov opakujúcich sa za sebou.";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/MaxConsecutiveNotSatisfiable/title]" = "Zvýšte limit na maximálny počet identických prvkov opakujúcich sa za sebou.";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Basic/title]" = "Základné";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Expert/title]" = "Expert";
+
+/* One of the operation modes of the random text generator, where it generates random phrases. */
+"[PasswordGenerator/Mode/Passphrase/title]" = "Prístupová fráza";
+
+/* Operation mode of the random text generator (for example, `Basic`, `Expert`, `Passphrase`) */
+"[PasswordGenerator/Mode/title]" = "Režim";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/NotEnoughElementsToSample/title]" = "Je potrebné vybrať viac prvkov.";
+
+/* Length (number of characters) of the password to generate */
+"[PasswordGenerator/PasswordLength/title]" = "Dĺžka hesla";
+
+/* Error message from the random text generator. `required` and `excluded` are as in [PasswordGenerator/InclusionCondition/required] and [PasswordGenerator/InclusionCondition/excluded] */
+"[PasswordGenerator/RequiredSetCompletelyExcluded/title]" = "Jedna zo sád znakov je povinná aj vylúčená.";
+
+/* Title for digits (like '123') */
+"[PasswordGenerator/Set/Digits/title]" = "Číslice";
+
+/* Title for look-alike symbols (like '1lI', that is: digit `1`, small `L`, capital `i`). */
+"[PasswordGenerator/Set/Lookalikes/title]" = "Podobné znaky";
+
+/* Title for lowercase letters (like 'abc') */
+"[PasswordGenerator/Set/Lowercase/title]" = "Malé písmená";
+
+/* Title for special symbols (like '@#$') */
+"[PasswordGenerator/Set/Specials/title]" = "Špeciálne symboly";
+
+/* Title for uppercase letters (like 'ABC') */
+"[PasswordGenerator/Set/Uppercase/title]" = "Veľké písmená";
+
+/* Name of the space character. https://en.wikipedia.org/wiki/Space_(punctuation) */
+"[PasswordGenerator/SpaceCharacter/name]" = "Medzera";
+
+/* Title of the random text/password/username generator dialog. */
+"[PasswordGenerator/title]" = "Náhodný generátor";
+
+/* Character to be inserted between words of a passphrase. */
+"[PasswordGenerator/Word Separtor/title]" = "Oddeľovač";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/lowerCase]" = "malé písmená";
+
+/* Case of letters in a word (e.g. UPPER, lower, Title Case) */
+"[PasswordGenerator/WordCase/title]" = "Veľké a malé písmená";
+
+/* Word capitalization style: first letters of significant words capitalized. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/titleCase]" = "Prvé Veľké";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/upperCase]" = "VEĽKÉ PÍSMENÁ";
+
+/* Number of words in a generated passphrase. In context: 'Words: 5' */
+"[PasswordGenerator/WordCount/title]" = "Slová";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFLarge/title]" = "EFF Veľký zoznam slov (7776 slov)";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFShort/title]" = "EFF Krátky zoznam slov (1296 slov)";
+
+/* List of words to be used for a passphrase. */
+"[PasswordGenerator/Wordlist/title]" = "Zoznam slov";
 
 /* Explanation of the premium feature */
 "[Premium/Benefits/AttachmentPreview/details]" = "Zobrazte si ukážku príloh priamo v aplikácii KeePassium a nezanechávajte stopy v iných aplikáciách. (Náhľad podporuje obrázky, dokumenty, archívy a ďalšie.)";
@@ -1036,6 +1189,9 @@
 /* Status: validity period of once-and-forever premium */
 "[Premium/status] Valid forever" = "Platné navždy";
 
+/* Status when the user has a premium version */
+"[Premium/Status/title]" = "Prémiová verzia";
+
 /* Subscription conditions */
 "[Premium/Subscription/Legal/text]" = "Platba bude naúčtovaná na váš Apple účet pri potvrdení nákupu. \n\nPredplatné sa automaticky obnoví, ak nebude zrušené najmenej 24 hodín pred koncom aktuálneho obdobia. Platba za obnovenie predplatného bude zúčtovaná z vášho účtu počas 24 hodín pred vypršaním aktuálneho obdobia.\n\nSvoje predplatné môžete spravovať alebo zrušiť po vykonaní nákupu v nastavení vášho účtu v App Store.";
 
@@ -1129,6 +1285,15 @@
 /* Title of a premium feature: show relevant AutoFill entries right under the input field */
 "[PremiumFeature/QuickAutoFill/title]" = "Rýchle automatické dppĺňanie";
 
+/* A brief summary of the privacy policy (for offline mode) */
+"[PrivacyPolicy/Offline/text]" = "KeePassium nezhromažďuje žiadne osobné ani analytické údaje ani ich s nikým nezdieľa.";
+
+/* A brief summary of the privacy policy (for online mode) */
+"[PrivacyPolicy/Online/text]" = "KeePassium nezhromažďuje žiadne osobné ani analytické údaje.\nNiektoré funkcie môžu zahŕňať výmenu údajov s externými službami (na vašu žiadosť a výlučne na účely sprístupnenia týchto služieb). Takáto výmena sa riadi zásadami ochrany osobných údajov príslušnej služby.";
+
+/* Section: privacy policy */
+"[PrivacyPolicy/title]" = "Zásady ochrany osobných údajov";
+
 /* Explanation/notification when a long-running operation was cancelled by user */
 "[Progress/CancellationReason] Cancelled by user" = "Zrušené používateľom";
 
@@ -1141,8 +1306,35 @@
 /* Name of a feature that shows relevant entries directly next to the login/password forms. */
 "[QuickAutoFill/title]" = "Rýchle automatické dppĺňanie";
 
+/* Network security setting */
+"[RemoteConnection/AllowUntrusted/title]" = "Povoliť nedôveryhodný certifikát";
+
+/* Network connection. For example `Connection: WebDAV` or `Connection: MyCloud`. */
+"[RemoteConnection/Connection/title]" = "Pripojenie";
+
+/* Action: connect to a network server */
+"[RemoteConnection/connectToServer]" = "Pripojiť k serveru";
+
+/* Title of a section: username, password, etc */
+"[RemoteConnection/Credentials]" = "Nastavenia prístupu";
+
+/* Error message: user credentials rejected by the server */
+"[RemoteConnection/Error/AuthenticationFailed/title]" = "Overenie zlyhalo";
+
+/* Network address of a file */
+"[RemoteConnection/FileURL]" = "Adresa URL súboru";
+
+/* Title: connection to a network storage */
+"[RemoteConnection/title]" = "Vzdialené pripojenie";
+
 /* Name of an input field for entering the password again */
 "[Repeat Password/Field/title]" = "Zopakujte heslo";
+
+/* Call to action (protect the app from unauthorized access) */
+"[Settings/AppLoc/Activate/callToAction]" = "Zapnúť zámok";
+
+/* Description of `Activate app protection` call to action. */
+"[Settings/AppLock/Activate/description]" = "Chráňte KeePassium pred neoprávneným prístupom.";
 
 /* Settings switch: whether AppLock is allowed to use Touch ID/Face ID. Example: 'Use Touch ID'. [biometryTypeName: String] */
 "[Settings/AppLock/Biometric/title] Use %@" = "Používať %@";
@@ -1158,6 +1350,9 @@
 
 /* Settings: subtitle of the `App Protection` section when biometric auth is not available. */
 "[Settings/AppLock/subtitle] App Lock, passcode, timeout" = "Zámok aplikácie, kód aplikácie, časový limit";
+
+/* Settings section: protection of the app from unauthorized access */
+"[Settings/AppLock/title]" = "Ochrana aplikácie";
 
 /* A description/subtitle for Settings/AppLockTimeout options that trigger when the user has been idle for a while. For example: 'AppLock Timeout: 3 seconds (After last interaction) */
 "[Settings/AppLockTimeout/description] After last interaction" = "Po poslednej interakcii";
@@ -1183,8 +1378,20 @@
 /* Description for the AutoFill setup instructions */
 "[Settings/AutoFill/Activate/description]" = "Pred prvým použitím je potrebné aktivovať automatické dopĺňanie v systémových nastaveniach.";
 
+/* Title of an option: copy one-time password to clipboard when using AutoFill */
+"[Settings/AutoFill/CopyOTP/title]" = "Kopírovať jednorazové heslo";
+
 /* Title of a help article on how to activate AutoFill. */
 "[Settings/AutoFill/Setup Guide/title]" = "Sprievodca nastavením automatického dopĺňania";
+
+/* Title of AutoFill settings screen */
+"[Settings/AutoFill/title]" = "Automatické vyplňovanie hesiel";
+
+/* Title of an option: automatically use the single best match found by AutoFill search */
+"[Settings/AutoFill/UsePerfectMatch/title]" = "Vyplniť presné výsledky automaticky";
+
+/* Option in settings: whether to open the last used database automatically on start. */
+"[Settings/AutoOpenPreviousDatabase/title]" = "Automaticky načítať naposledy otvorenú databázu";
 
 /* Action to delete all backup files from the app. `ALL` is in capitals as a highlight. [backupFileCount: Int] */
 "[Settings/Backup] Delete ALL Backup Files (%d)" = "Vymazať VŠETKY zálohy? (%d)";
@@ -1219,6 +1426,9 @@
 /* An option in Settings. Will be shown as 'Clipboard Timeout: Never' */
 "[Settings/ClipboardTimeout/shortTitle] Never" = "Nikdy";
 
+/* Title of a settings section: backup of databases */
+"[Settings/DatabaseBackup/title]" = "Záloha databázy";
+
 /* Description of the Database Lock Timeout */
 "[Settings/DatabaseLockTimeout/description] If you are not interacting with the app for some time, the database will be closed for your safety. To open it, you will need to enter its master password again." = "Ak aplikáciu nejaký čas nepoužívate, databáza sa z dôvodu vašej bezpečnosti uzavrie. Pre jej opätovné otvorenie budete musieť znova zadať jej hlavné heslo.";
 
@@ -1236,6 +1446,12 @@
 
 /* An option in Settings. Will be shown as 'Database Lock: Timeout: Never' */
 "[Settings/DatabaseLockTimeout/shortTitle] Never" = "Nikdy";
+
+/* Subtitle for `Data Protection` section in settings */
+"[Settings/DataProtection/subtitle]" = "Hlavné kľúče, súbory s kľúčom";
+
+/* Settings section: protection of databases, their keys and data inside them */
+"[Settings/DataProtection/title]" = "Ochrana dát";
 
 /* An option in Group Viewer settings. Refers fo the most recent time when the entry was modified. Will be shown as 'Entry Subtitle: Last Modified Date'. */
 "[Settings/EntryListDetail/longTitle] Last Modified Date" = "Dátum poslednej úpravy";
@@ -1263,6 +1479,24 @@
 
 /* Title of list view configuration screen */
 "[Settings/ListSettings/title]" = "Nastavenia zoznamu";
+
+/* Settings section: how/whether the app is allowed to use networks/Internet */
+"[Settings/NetworkAccess/title]" = "Prístup k sieti";
+
+/* Description of the `Stay Offline` mode. */
+"[Settings/NetworkAccessMode/Offline/description]" = "Maximálne súkromie";
+
+/* Setting option: the app should work offline */
+"[Settings/NetworkAccessMode/Offline/title]" = "Zostať offline";
+
+/* Description of the `Allow Network Access` mode. */
+"[Settings/NetworkAccessMode/Online/description]" = "Maximálna funkčnosť";
+
+/* Setting option: the app is permitted to use online features */
+"[Settings/NetworkAccessMode/Online/title]" = "Povoliť prístup k sieti";
+
+/* Section title in settings */
+"[Settings/Search/title]" = "Vyhľadávanie";
 
 /* Title of a sort options list. Example: 'Sort by: Name' */
 "[SortBy]" = "Zoradiť podľa";
@@ -1315,6 +1549,9 @@
 /* Call to action, title of the tip box/donation screen. */
 "[TipBox/title/3]" = "Podporte KeePassium";
 
+/* Name of an entry field. Acronym `TOTP` should not be translated. */
+"[TOTP/FieldName]" = "Jednorazové heslo (TOTP)";
+
 /* Human-readable file location. The file is situated either online / in cloud storage, or on the same device, but in some other app. Example: 'File Location: Cloud storage / Another app' */
 "[URLReference/Location] Cloud storage / Another app" = "Cloudové úložisko / ďalšie aplikácie";
 
@@ -1350,6 +1587,9 @@
 
 /* Warning message when the user tries to use a database as a key file */
 "KeePass database should not be used as key file. Please pick a different file." = "KeePass databáza by nemala byť použitá ako súbor s kľúčom. Prosím, vyberte iný súbor.";
+
+/* Placeholder shown when there are no database files available */
+"No database files" = "Žiadne databázové súbory";
 
 /* Settings switch: whether to include backup copies in the file list */
 "Show Backup Files" = "Zobraziť záložné súbory";

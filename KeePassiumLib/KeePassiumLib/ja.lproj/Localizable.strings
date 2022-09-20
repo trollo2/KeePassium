@@ -1,8 +1,20 @@
+/* Menu item that shows info about KeePassium app */
+"[About/altTitle]" = "KeePassiumについて";
+
+/* Copyright notice */
+"[About/CopyrightAuthor]" = "©Andrei Popleteev";
+
 /* Suggestion/hint for available user action */
 "[Accessibility] Double tap to copy to clipboard" = "ダブルタップでクリップボードにコピー";
 
+/* Call to action: perform accessibilty `activate` action to listen to text/content. */
+"[Accessibility/activateToListen]" = "有効にする。";
+
 /* Title of a setting option: font size */
 "[Appearance/TextSize/title]" = "文字の大きさ";
+
+/* Group of settings for user interface appearance (text size, icons, etc) */
+"[Appearance/title]" = "表示";
 
 /* Action/button to unlock the App Lock with passcode */
 "[AppLock] Unlock" = "ロックを解除";
@@ -81,6 +93,9 @@
 
 /* Notification: an item has been copied to clipboard */
 "[Clipboard/Copy/notification]" = "コピーしました";
+
+/* Subtitle for `Contact Us`. Keep it short. */
+"[ContactUs/subtitle]" = "改善提案や問題点を報告";
 
 /* Error message about AES cipher. [errorCode: Int] */
 "[CryptoError] AES decryption error (code %d)" = "AES 復号エラー (コード %d)";
@@ -421,6 +436,12 @@
 /* Error message: user provided a wrong master key for decryption. */
 "[DatabaseError] Invalid password or key file" = "パスワードまたはキーファイルが無効です";
 
+/* Subtitle for `Diagnostic Log`. Keep it short. */
+"[DiagLog/subtitle]" = "障害対応のための情報";
+
+/* Title of the diagnostic info screen */
+"[DiagLog/title]" = "診断ログ";
+
 /* Notification/confirmation message */
 "[Diagnostics] Diagnostic log has been copied to clipboard." = "診断ログをクリップボードにコピーしました。";
 
@@ -453,6 +474,12 @@
 
 /* Default name of a newly created entry field */
 "[Entry/Edit/CreateField/defaultName] Field Name" = "項目名";
+
+/* Notification: a reference to an entry field has been copied to clipboard */
+"[Entry/Field/CopyReference/acknowledgement]" = "クリップボードにコピーしました";
+
+/* Action: copy a reference to the selected entry field to clipboard */
+"[Entry/Field/CopyReference/action]" = "項目の参照をコピー";
 
 /* Name of an entry field */
 "[Entry/Field/name] Notes" = "メモ";
@@ -520,6 +547,9 @@
 /* Error message shown when there's internal inconsistency in KeePassium. */
 "[FileAccessError/internalError]" = "KeePassium内部エラーです。サポートにお問い合わせください。";
 
+/* Error message: network access is forbidden by system or app settings. */
+"[FileAccessError/NetworkAccessDenied/generic]" = "ネットワークアクセスは設定によってブロックされています。";
+
 /* Error message: storage provider app (e.g. Google Drive) does not respond to requests. */
 "[FileAccessError/NoResponse/genericFileProvider]" = "ストレージが応答しません。";
 
@@ -567,6 +597,9 @@
 
 /* Title of a setting: is the file exluded from iCloud/iTunes backup. For example: `Exclude From Backup: <Yes>` */
 "[FileInfo/isExcludedFromBackup/title]" = "iCloud/iTunesのバックアップから除外";
+
+/* Title of a dialog with file details (name, size, dates) */
+"[FileInfo/title]" = "ファイルの情報";
 
 /* Error message [reason: String] */
 "[FileKeeper] Failed to delete file. Reason: %@" = "ファイルを削除できません: %@";
@@ -681,6 +714,12 @@
 
 /* Title of the dialog for picking the destination group for move/copy operations */
 "[General/DestinationGroup/title] Choose a Destination" = "保存先を選択";
+
+/* Feature status: disabled/inactive. Keep it short, possibly abbreviated. */
+"[General/Feature/Off]" = "オフ";
+
+/* Feature status: enabled/active. Keep it short, possibly abbreviated. */
+"[General/Feature/On]" = "オン";
 
 /* Action/button to cancel whatever is going on */
 "[Generic] Cancel" = "キャンセル";
@@ -862,6 +901,9 @@
 /* Generic title of in-app help article */
 "[Help Viewer/title]" = "ヘルプ";
 
+/* Name of an entry field. Acronym `HOTP` should not be translated. */
+"[HOTP/FieldName]" = "ワンタイムパスワード (HOTP)";
+
 /* Notification that an archived/historical item (e.g entry) has been successfully restored */
 "[Item/History/Restored]" = "以前のバージョンが復元されました";
 
@@ -901,6 +943,9 @@
 /* Menu item: show information about file (name, size, dates) */
 "[Menu/FileInfo/title]" = "ファイルの情報";
 
+/* Name of an entry field */
+"[OTP/FieldName]" = "ワンタイムパスワード";
+
 /* Error shown when scanned QR code cannot be used for OTP */
 "[OTP/Scan/InvalidData]" = "このQRコードは、ワンタイム・パスワードの設定に使えません。";
 
@@ -909,6 +954,114 @@
 
 /* Call for action. Acronym `OTP` should not be translated. */
 "[OTP/Setup]" = "ワンタイム・パスワード (OTP) の設定";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/CannotGenerateText/title]" = "テキストを生成できません";
+
+/* Description of an empty character set for password generator. 'Empty' as 'there are no characters'. */
+"[PasswordGenerator/CustomSet/Empty/title]" = "未設定";
+
+/* User-defined set of characters for password generator. */
+"[PasswordGenerator/CustomSet/title]" = "指定の文字";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/DesiredLengthTooShort/title]" = "少なくとも%d文字以上にしてください。";
+
+/* Action/button: generate random text/password/phrase */
+"[PasswordGenerator/Generate/action]" = "生成";
+
+/* Description of randomly generated text/password/phrase */
+"[PasswordGenerator/GeneratedText/title]" = "テキストを生成";
+
+/* Inclusion criterion for a password generator. For example: `Digits: Allowed` */
+"[PasswordGenerator/InclusionCondition/allowed]" = "任意";
+
+/* Inclusion criterion for a password generator. For example: `Uppercase Letters: Excluded` */
+"[PasswordGenerator/InclusionCondition/excluded]" = "使用不可";
+
+/* Inclusion criterion for a password generator — a disabled/inactive one that won't be taken into account. For example: `Uppercase Letters: Inactive` */
+"[PasswordGenerator/InclusionCondition/inactive]" = "使用不可";
+
+/* Inclusion criterion for a password generator. For example: `Special Symbols: Required` */
+"[PasswordGenerator/InclusionCondition/required]" = "必須";
+
+/* Length (number of characters) of the random text to generate */
+"[PasswordGenerator/Length/title]" = "長さ";
+
+/* Description of a password generator parameter. For example, the digit in 'abc222def'. */
+"[PasswordGenerator/MaxConsecutive/description]" = "同じ文字の連続を、この値までに制限します。";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/MaxConsecutiveNotSatisfiable/title]" = "「同一文字の最大連続数」を増やしてください。";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Basic/title]" = "基本";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Expert/title]" = "詳細";
+
+/* One of the operation modes of the random text generator, where it generates random phrases. */
+"[PasswordGenerator/Mode/Passphrase/title]" = "パスフレーズ";
+
+/* Operation mode of the random text generator (for example, `Basic`, `Expert`, `Passphrase`) */
+"[PasswordGenerator/Mode/title]" = "モード";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/NotEnoughElementsToSample/title]" = "使用する文字を選択してください。";
+
+/* Length (number of characters) of the password to generate */
+"[PasswordGenerator/PasswordLength/title]" = "パスワードの長さ";
+
+/* Error message from the random text generator. `required` and `excluded` are as in [PasswordGenerator/InclusionCondition/required] and [PasswordGenerator/InclusionCondition/excluded] */
+"[PasswordGenerator/RequiredSetCompletelyExcluded/title]" = "必須と使用不可の両方を選択している文字セットがあります。";
+
+/* Title for digits (like '123') */
+"[PasswordGenerator/Set/Digits/title]" = "数字";
+
+/* Title for look-alike symbols (like '1lI', that is: digit `1`, small `L`, capital `i`). */
+"[PasswordGenerator/Set/Lookalikes/title]" = "似ている文字";
+
+/* Title for lowercase letters (like 'abc') */
+"[PasswordGenerator/Set/Lowercase/title]" = "小文字";
+
+/* Title for special symbols (like '@#$') */
+"[PasswordGenerator/Set/Specials/title]" = "記号";
+
+/* Title for uppercase letters (like 'ABC') */
+"[PasswordGenerator/Set/Uppercase/title]" = "大文字";
+
+/* Name of the space character. https://en.wikipedia.org/wiki/Space_(punctuation) */
+"[PasswordGenerator/SpaceCharacter/name]" = "空白";
+
+/* Title of the random text/password/username generator dialog. */
+"[PasswordGenerator/title]" = "パスワードを生成";
+
+/* Character to be inserted between words of a passphrase. */
+"[PasswordGenerator/Word Separtor/title]" = "区切り文字";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/lowerCase]" = "小文字";
+
+/* Case of letters in a word (e.g. UPPER, lower, Title Case) */
+"[PasswordGenerator/WordCase/title]" = "ケース";
+
+/* Word capitalization style: first letters of significant words capitalized. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/titleCase]" = "タイトルケース";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/upperCase]" = "大文字";
+
+/* Number of words in a generated passphrase. In context: 'Words: 5' */
+"[PasswordGenerator/WordCount/title]" = "単語";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFLarge/title]" = "EFFのラージワードリスト (7776個)";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFShort/title]" = "EFFのショートワードリスト (1296個)";
+
+/* List of words to be used for a passphrase. */
+"[PasswordGenerator/Wordlist/title]" = "ワードリスト";
 
 /* Explanation of the premium feature */
 "[Premium/Benefits/AttachmentPreview/details]" = "添付ファイルを直接Appで表示するので、他のAppに痕跡を残しません。(画像や文書、圧縮ファイルなどで有効です。)";
@@ -962,7 +1115,7 @@
 "[Premium/CallToAction/startTrial]" = "無料で試す";
 
 /* Call to action: upgrade to premium */
-"[Premium/CallToAction/upgradeNow]" = "今すぐアップグレードする";
+"[Premium/CallToAction/upgradeNow]" = "今すぐアップグレード";
 
 /* Action: open AppStore subscription management page */
 "[Premium/ManageSubscriptions/action]" = "サブスクリプションを管理";
@@ -1035,6 +1188,9 @@
 
 /* Status: validity period of once-and-forever premium */
 "[Premium/status] Valid forever" = "永久に有効";
+
+/* Status when the user has a premium version */
+"[Premium/Status/title]" = "プレミアム版";
 
 /* Subscription conditions */
 "[Premium/Subscription/Legal/text]" = "お支払いは、Apple IDのアカウントに対し購入確定時に請求いたします。\n\nサブスクリプション（期限付きの使用）は、期限が切れる24時間前までにキャンセルされなければ、自動的に更新されます。更新する場合の請求は、期限終了前の24時間以内に行われます。\n\nサブスクリプションの管理やキャンセルは、購入後にApp Storeのアカウント設定で可能です。";
@@ -1129,6 +1285,15 @@
 /* Title of a premium feature: show relevant AutoFill entries right under the input field */
 "[PremiumFeature/QuickAutoFill/title]" = "クイック自動入力";
 
+/* A brief summary of the privacy policy (for offline mode) */
+"[PrivacyPolicy/Offline/text]" = "KeePassiumは個人データまたは分析データを収集したり、他の人と共有したりすることはありません。";
+
+/* A brief summary of the privacy policy (for online mode) */
+"[PrivacyPolicy/Online/text]" = "KeePassiumは個人データまたは分析データを収集しません。\n一部の機能には、外部サービスとのデータ交換が含まれる場合があります(お客様の要求に応じて、これらのサービスをお客様に提供する唯一の目的のため)。 このような交換は、それぞれのサービスのプライバシーポリシーに準拠します。";
+
+/* Section: privacy policy */
+"[PrivacyPolicy/title]" = "プライバシーポリシー";
+
 /* Explanation/notification when a long-running operation was cancelled by user */
 "[Progress/CancellationReason] Cancelled by user" = "ユーザーにキャンセルされました";
 
@@ -1141,8 +1306,35 @@
 /* Name of a feature that shows relevant entries directly next to the login/password forms. */
 "[QuickAutoFill/title]" = "クイック自動入力";
 
+/* Network security setting */
+"[RemoteConnection/AllowUntrusted/title]" = "信頼されていない証明書を許可";
+
+/* Network connection. For example `Connection: WebDAV` or `Connection: MyCloud`. */
+"[RemoteConnection/Connection/title]" = "接続";
+
+/* Action: connect to a network server */
+"[RemoteConnection/connectToServer]" = "サーバーに接続";
+
+/* Title of a section: username, password, etc */
+"[RemoteConnection/Credentials]" = "アカウント";
+
+/* Error message: user credentials rejected by the server */
+"[RemoteConnection/Error/AuthenticationFailed/title]" = "認証失敗";
+
+/* Network address of a file */
+"[RemoteConnection/FileURL]" = "ファイルのURL";
+
+/* Title: connection to a network storage */
+"[RemoteConnection/title]" = "リモート接続";
+
 /* Name of an input field for entering the password again */
 "[Repeat Password/Field/title]" = "パスワードの確認";
+
+/* Call to action (protect the app from unauthorized access) */
+"[Settings/AppLoc/Activate/callToAction]" = "Appロックを使用";
+
+/* Description of `Activate app protection` call to action. */
+"[Settings/AppLock/Activate/description]" = "KeePassiumを不正なアクセスから保護します。";
 
 /* Settings switch: whether AppLock is allowed to use Touch ID/Face ID. Example: 'Use Touch ID'. [biometryTypeName: String] */
 "[Settings/AppLock/Biometric/title] Use %@" = "%@ を使用";
@@ -1158,6 +1350,9 @@
 
 /* Settings: subtitle of the `App Protection` section when biometric auth is not available. */
 "[Settings/AppLock/subtitle] App Lock, passcode, timeout" = "Appロック、パスコード、タイムアウト";
+
+/* Settings section: protection of the app from unauthorized access */
+"[Settings/AppLock/title]" = "Appの保護";
 
 /* A description/subtitle for Settings/AppLockTimeout options that trigger when the user has been idle for a while. For example: 'AppLock Timeout: 3 seconds (After last interaction) */
 "[Settings/AppLockTimeout/description] After last interaction" = "最後に操作した後";
@@ -1183,8 +1378,20 @@
 /* Description for the AutoFill setup instructions */
 "[Settings/AutoFill/Activate/description]" = "利用するにあたり、まず自動入力をオンにする必要があります。";
 
+/* Title of an option: copy one-time password to clipboard when using AutoFill */
+"[Settings/AutoFill/CopyOTP/title]" = "OTPをクリップボードにコピー";
+
 /* Title of a help article on how to activate AutoFill. */
 "[Settings/AutoFill/Setup Guide/title]" = "自動入力設定ガイド";
+
+/* Title of AutoFill settings screen */
+"[Settings/AutoFill/title]" = "パスワードの自動入力";
+
+/* Title of an option: automatically use the single best match found by AutoFill search */
+"[Settings/AutoFill/UsePerfectMatch/title]" = "完全一致時に自動で入力";
+
+/* Option in settings: whether to open the last used database automatically on start. */
+"[Settings/AutoOpenPreviousDatabase/title]" = "前回使ったデータベースを開く";
 
 /* Action to delete all backup files from the app. `ALL` is in capitals as a highlight. [backupFileCount: Int] */
 "[Settings/Backup] Delete ALL Backup Files (%d)" = "すべてのバックアップを削除 (%d)";
@@ -1219,6 +1426,9 @@
 /* An option in Settings. Will be shown as 'Clipboard Timeout: Never' */
 "[Settings/ClipboardTimeout/shortTitle] Never" = "しない";
 
+/* Title of a settings section: backup of databases */
+"[Settings/DatabaseBackup/title]" = "データベースのバックアップ";
+
 /* Description of the Database Lock Timeout */
 "[Settings/DatabaseLockTimeout/description] If you are not interacting with the app for some time, the database will be closed for your safety. To open it, you will need to enter its master password again." = "Appがしばらく使われていない場合、安全のためにデータベースを閉じます。再開するにはマスターパスワードを再度入力してください。";
 
@@ -1236,6 +1446,12 @@
 
 /* An option in Settings. Will be shown as 'Database Lock: Timeout: Never' */
 "[Settings/DatabaseLockTimeout/shortTitle] Never" = "しない";
+
+/* Subtitle for `Data Protection` section in settings */
+"[Settings/DataProtection/subtitle]" = "マスターキー、キーファイル";
+
+/* Settings section: protection of databases, their keys and data inside them */
+"[Settings/DataProtection/title]" = "データの保護";
 
 /* An option in Group Viewer settings. Refers fo the most recent time when the entry was modified. Will be shown as 'Entry Subtitle: Last Modified Date'. */
 "[Settings/EntryListDetail/longTitle] Last Modified Date" = "変更日";
@@ -1263,6 +1479,24 @@
 
 /* Title of list view configuration screen */
 "[Settings/ListSettings/title]" = "リストの設定";
+
+/* Settings section: how/whether the app is allowed to use networks/Internet */
+"[Settings/NetworkAccess/title]" = "ネットワークアクセス";
+
+/* Description of the `Stay Offline` mode. */
+"[Settings/NetworkAccessMode/Offline/description]" = "最もプライバシーを保護";
+
+/* Setting option: the app should work offline */
+"[Settings/NetworkAccessMode/Offline/title]" = "常にオフライン";
+
+/* Description of the `Allow Network Access` mode. */
+"[Settings/NetworkAccessMode/Online/description]" = "最も機能的";
+
+/* Setting option: the app is permitted to use online features */
+"[Settings/NetworkAccessMode/Online/title]" = "ネットワークアクセスを許可";
+
+/* Section title in settings */
+"[Settings/Search/title]" = "検索";
 
 /* Title of a sort options list. Example: 'Sort by: Name' */
 "[SortBy]" = "並び替え";
@@ -1315,6 +1549,9 @@
 /* Call to action, title of the tip box/donation screen. */
 "[TipBox/title/3]" = "KeePassiumを支援";
 
+/* Name of an entry field. Acronym `TOTP` should not be translated. */
+"[TOTP/FieldName]" = "ワンタイムパスワード (TOTP)";
+
 /* Human-readable file location. The file is situated either online / in cloud storage, or on the same device, but in some other app. Example: 'File Location: Cloud storage / Another app' */
 "[URLReference/Location] Cloud storage / Another app" = "クラウドストレージ / 他のアプリ";
 
@@ -1350,6 +1587,9 @@
 
 /* Warning message when the user tries to use a database as a key file */
 "KeePass database should not be used as key file. Please pick a different file." = "KeePassのデータベースをキーファイルとして使用しないでください。別のファイルを選択してください。";
+
+/* Placeholder shown when there are no database files available */
+"No database files" = "データベースがありません";
 
 /* Settings switch: whether to include backup copies in the file list */
 "Show Backup Files" = "バックアップを表示";

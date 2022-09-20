@@ -21,6 +21,12 @@ public enum FileAccessError: LocalizedError {
     
     case targetFileIsReadOnly(fileProvider: FileProvider)
     
+    case networkAccessDenied
+
+    case serverSideError(message: String)
+    
+    case networkError(message: String)
+    
     case systemError(_ originalError: Error?)
     
     public var isTimeout: Bool {
@@ -53,7 +59,7 @@ public enum FileAccessError: LocalizedError {
             }
         case .noInfoAvailable:
             assertionFailure("Should not be shown to the user")
-            return nil
+            return "noInfoAvailable" 
         case .internalError:
             return NSLocalizedString(
                 "[FileAccessError/internalError]",
@@ -118,40 +124,26 @@ public enum FileAccessError: LocalizedError {
                     comment: "Error message: file provider does not support write operations. For example: `Cannot save file (OneDrive)`"),
                 fileProvider.localizedName
             )
+        case .networkAccessDenied:
+            return NSLocalizedString(
+                "[FileAccessError/NetworkAccessDenied/generic]",
+                bundle: Bundle.framework,
+                value: "Network access is blocked by the settings.",
+                comment: "Error message: network access is forbidden by system or app settings.")
+        case .serverSideError(let message):
+            return message
+        case .networkError(let message):
+            return message
         case .systemError(let originalError):
             return originalError?.localizedDescription
         }
     }
     
     public var failureReason: String? {
-        switch self {
-        case .targetFileIsReadOnly(let fileProvider):
-            if fileProvider == .oneDrive {
-                return NSLocalizedString(
-                    "[FileAccessError/OneDriveReadOnly/reason]",
-                    bundle: Bundle.framework,
-                    value: "Microsoft has recently switched OneDrive integration with iOS to read-only mode. Temporarily, they say.",
-                    comment: "Explanation of a file writing error"
-                )
-            }
-        default:
-            break
-        }
         return nil
     }
     
     public var recoverySuggestion: String? {
-        switch self {
-        case .targetFileIsReadOnly:
-            return NSLocalizedString(
-                "[FileAccessError/OneDriveReadOnly/recoverySuggestion]",
-                bundle: Bundle.framework,
-                value: "Use the Export option to save file to another location.",
-                comment: "Suggestion for error recovery"
-            )
-        default:
-            break
-        }
         return nil
     }
     
@@ -162,21 +154,22 @@ public enum FileAccessError: LocalizedError {
             [fileProvider: \(fileProvider?.id ?? "nil"), systemError: \(nsError.debugDescription)]
             """)
         switch (nsError.domain, nsError.code) {
-        case (NSCocoaErrorDomain, 4101):
-            fallthrough
+        case (NSCocoaErrorDomain, CocoaError.Code.xpcConnectionReplyInvalid.rawValue): 
+            return .fileProviderDoesNotRespond(fileProvider: fileProvider)
             
-        case (NSCocoaErrorDomain, 4097): fallthrough
-        case (NSCocoaErrorDomain, 4099):
+        case (NSCocoaErrorDomain, CocoaError.Code.xpcConnectionInterrupted.rawValue), 
+             (NSCocoaErrorDomain, CocoaError.Code.xpcConnectionInvalid.rawValue): 
             return .fileProviderDoesNotRespond(fileProvider: fileProvider)
 
-        case (NSCocoaErrorDomain, 513):
+        case (NSCocoaErrorDomain, CocoaError.Code.fileWriteNoPermission.rawValue): 
             if let fileProvider = fileProvider {
                 return .targetFileIsReadOnly(fileProvider: fileProvider)
             } else {
                 return .systemError(originalError)
             }
 
-        case ("NSFileProviderInternalErrorDomain", 0):
+        case ("NSFileProviderInternalErrorDomain", 0), 
+             ("NSFileProviderErrorDomain", -2001): 
             return .fileProviderNotFound(fileProvider: fileProvider)
             
         default:
@@ -192,4 +185,19 @@ public enum FileAccessError: LocalizedError {
             return nil
         }
     }
+}
+
+extension LString.Error {
+    fileprivate static let oneDriveIsReadOnlyDescription = NSLocalizedString(
+        "[FileAccessError/OneDriveReadOnly/reason]",
+        bundle: Bundle.framework,
+        value: "Microsoft has recently switched OneDrive integration with iOS to read-only mode. Temporarily, they say.",
+        comment: "Explanation of a file writing error"
+    )
+    fileprivate static let oneDriveIsReadOnlyRecoverySuggestion = NSLocalizedString(
+        "[FileAccessError/OneDriveReadOnly/recoverySuggestion]",
+        bundle: Bundle.framework,
+        value: "Use the Export option to save file to another location.",
+        comment: "Suggestion for error recovery"
+    )
 }

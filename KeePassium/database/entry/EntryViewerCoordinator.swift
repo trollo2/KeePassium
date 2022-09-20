@@ -145,7 +145,7 @@ final class EntryViewerCoordinator: NSObject, Coordinator, Refreshable {
         let fields = ViewableEntryFieldFactory.makeAll(
             from: entry,
             in: database,
-            excluding: [.title, .emptyValues]
+            excluding: [.title, .emptyValues, .otpConfig]
         )
         fieldViewerVC.setContents(
             fields,
@@ -257,7 +257,8 @@ extension EntryViewerCoordinator {
             allowCancelling: false,
             animated: true)
         
-        FileDataProvider.read(url, fileProvider: nil, completionQueue: .main) {
+        let fileProvider = FileProvider.find(for: url) 
+        FileDataProvider.read(url, fileProvider: fileProvider, completionQueue: .main) {
             [weak self] result in
             assert(Thread.isMainThread)
             guard let self = self else { return }
@@ -548,6 +549,21 @@ extension EntryViewerCoordinator: EntryFieldViewerDelegate {
         in viewController: EntryFieldViewerVC
     ) {
         showExportDialog(for: text, at: popoverAnchor, in: viewController)
+    }
+    
+    func didPressCopyFieldReference(
+        from viewableField: ViewableField,
+        in viewController: EntryFieldViewerVC
+    ) {
+        guard let entryField = viewableField.field,
+              let refString = EntryFieldReference.make(for: entryField, in: entry)
+        else {
+            assertionFailure("Tried to create a reference to non-referenceable field")
+            return
+        }
+        Clipboard.general.insert(refString)
+        HapticFeedback.play(.copiedToClipboard)
+        viewController.showNotification(LString.fieldReferenceCopiedToClipboard)
     }
 }
 

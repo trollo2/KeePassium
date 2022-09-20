@@ -19,6 +19,7 @@ protocol SettingsViewControllerDelegate: AnyObject {
     func didPressAutoFillSettings(in viewController: SettingsVC)
     func didPressAppProtectionSettings(in viewController: SettingsVC)
     func didPressDataProtectionSettings(in viewController: SettingsVC)
+    func didPressNetworkAccessSettings(in viewController: SettingsVC)
     func didPressBackupSettings(in viewController: SettingsVC)
     
     func didPressShowDiagnostics(in viewController: SettingsVC)
@@ -33,8 +34,10 @@ final class SettingsVC: UITableViewController, Refreshable {
     @IBOutlet private weak var dataSafetyCell: UITableViewCell!
     @IBOutlet private weak var dataBackupCell: UITableViewCell!
     @IBOutlet private weak var autoFillCell: UITableViewCell!
+    @IBOutlet private weak var networkAccessCell: UITableViewCell!
     
     @IBOutlet private weak var searchCell: UITableViewCell!
+    @IBOutlet private weak var autoUnlockStartupDatabaseLabel: UILabel!
     @IBOutlet private weak var autoUnlockStartupDatabaseSwitch: UISwitch!
     @IBOutlet private weak var appearanceCell: UITableViewCell!
     
@@ -59,7 +62,7 @@ final class SettingsVC: UITableViewController, Refreshable {
         static let premiumStatus = IndexPath(row: 1, section: premiumSectionIndex)
         static let manageSubscription = IndexPath(row: 2, section: premiumSectionIndex)
 
-        static let supportSectionIndex = 6
+        static let supportSectionIndex = 7
         static let tipBoxCell = IndexPath(row: 1, section: supportSectionIndex)
     }
     private var hiddenIndexPaths = Set<IndexPath>()
@@ -98,15 +101,41 @@ final class SettingsVC: UITableViewController, Refreshable {
             setCellVisibility(manageSubscriptionCell, isHidden: true)
             setCellVisibility(tipBoxCell, isHidden: true)
         }
-        
-        premiumStatusCell.detailTextLabel?.text = nil 
-        tipBoxCell.textLabel?.text = LString.tipBoxTitle2
-        tipBoxCell.detailTextLabel?.text = LString.tipBoxTitle3
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setLocalizedStrings()
         refresh()
+    }
+
+    private func setLocalizedStrings() {
+        appHistoryCell.textLabel?.text = LString.titleAppHistory
+        premiumPurchaseCell.textLabel?.text = LString.actionUpgradeToPremium
+        premiumStatusCell.textLabel?.text = LString.premiumVersion
+        premiumStatusCell.detailTextLabel?.text = nil 
+        manageSubscriptionCell.textLabel?.text = LString.actionManageSubscriptions
+        
+        autoUnlockStartupDatabaseLabel.text = LString.autoOpenPreviousDatabase
+        
+        appearanceCell.textLabel?.text = LString.titleAppearanceSettings
+        autoFillCell.textLabel?.text = LString.titleAutoFillSettings
+        searchCell.textLabel?.text = LString.titleSearchSettings
+        
+        appSafetyCell.textLabel?.text = LString.titleAppProtectionSettings
+        dataSafetyCell.textLabel?.text = LString.titleDataProtectionSettings
+        dataSafetyCell.detailTextLabel?.text = LString.subtitleDataProtectionSettings
+        
+        networkAccessCell.textLabel?.text = LString.titleNetworkAccessSettings
+        
+        dataBackupCell.textLabel?.text = LString.titleDatabaseBackupSettings
+        contactSupportCell.textLabel?.text = LString.actionContactUs
+        contactSupportCell.detailTextLabel?.text = LString.subtitleContactUs
+        tipBoxCell.textLabel?.text = LString.tipBoxTitle2
+        tipBoxCell.detailTextLabel?.text = LString.tipBoxTitle3
+        diagnosticLogCell.textLabel?.text = LString.titleDiagnosticLog
+        diagnosticLogCell.detailTextLabel?.text = LString.subtitleDiagnosticLog
+        aboutAppCell.textLabel?.text = LString.titleAboutKeePassium
     }
     
     func refresh() {
@@ -121,7 +150,12 @@ final class SettingsVC: UITableViewController, Refreshable {
             appSafetyCell.detailTextLabel?.text = LString.appLockWithPasscodeSubtitle
         }
         refreshPremiumStatus()
-        
+
+        if settings.isNetworkAccessAllowed {
+            networkAccessCell.detailTextLabel?.text = LString.statusFeatureOn
+        } else {
+            networkAccessCell.detailTextLabel?.text = LString.statusFeatureOff
+        }
         contactSupportCell.accessibilityValue = SupportEmailComposer.getSupportEmail()
     }
     
@@ -212,6 +246,8 @@ final class SettingsVC: UITableViewController, Refreshable {
             delegate?.didPressSearchSettings(in: self)
         case appearanceCell:
             delegate?.didPressAppearanceSettings(in: self)
+        case networkAccessCell:
+            delegate?.didPressNetworkAccessSettings(in: self)
         case dataBackupCell:
             delegate?.didPressBackupSettings(in: self)
         case premiumStatusCell,
@@ -291,7 +327,7 @@ final class SettingsVC: UITableViewController, Refreshable {
     
     private func displayInitialGracePeriodStatus(_ purchaseHistory: PurchaseHistory) {
         if Settings.current.isTestEnvironment {
-            let secondsLeft = PremiumManager.shared.gracePeriodSecondsRemaining
+            let secondsLeft = PremiumManager.shared.gracePeriodRemaining
             Diag.debug("Initial setup period: \(secondsLeft) seconds remaining")
         }
         displayFreeStatus(heavyUse: false, purchaseHistory)
@@ -425,8 +461,9 @@ final class SettingsVC: UITableViewController, Refreshable {
         
         let monthlyUseDuration = usageMonitor.getAppUsageDuration(.perMonth)
         let annualUseDuration = 12 * monthlyUseDuration
-        
-        guard monthlyUseDuration > 5 * 60.0 else { return nil }
+        guard monthlyUseDuration > 5 * TimeInterval.minute else {
+            return nil
+        }
         guard let monthlyUsage = usageTimeFormatter.string(from: monthlyUseDuration),
               let annualUsage = usageTimeFormatter.string(from: annualUseDuration)
         else {

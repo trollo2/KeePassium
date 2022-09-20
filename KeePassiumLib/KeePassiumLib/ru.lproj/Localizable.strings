@@ -1,8 +1,20 @@
+/* Menu item that shows info about KeePassium app */
+"[About/altTitle]" = "О программе";
+
+/* Copyright notice */
+"[About/CopyrightAuthor]" = "© Андрей Поплетеев";
+
 /* Suggestion/hint for available user action */
 "[Accessibility] Double tap to copy to clipboard" = "Нажмите дважды, чтобы скопировать в буфер обмена";
 
+/* Call to action: perform accessibilty `activate` action to listen to text/content. */
+"[Accessibility/activateToListen]" = "Активируйте, чтобы прослушать.";
+
 /* Title of a setting option: font size */
 "[Appearance/TextSize/title]" = "Размер текста";
+
+/* Group of settings for user interface appearance (text size, icons, etc) */
+"[Appearance/title]" = "Внешний вид";
 
 /* Action/button to unlock the App Lock with passcode */
 "[AppLock] Unlock" = "Открыть";
@@ -81,6 +93,9 @@
 
 /* Notification: an item has been copied to clipboard */
 "[Clipboard/Copy/notification]" = "Скопировано";
+
+/* Subtitle for `Contact Us`. Keep it short. */
+"[ContactUs/subtitle]" = "Идеи? Вопросы? Расскажите нам!";
 
 /* Error message about AES cipher. [errorCode: Int] */
 "[CryptoError] AES decryption error (code %d)" = "Ошибка дешифрования AES (код %d)";
@@ -421,6 +436,12 @@
 /* Error message: user provided a wrong master key for decryption. */
 "[DatabaseError] Invalid password or key file" = "Неверный пароль или ключевой файл";
 
+/* Subtitle for `Diagnostic Log`. Keep it short. */
+"[DiagLog/subtitle]" = "Для решения проблем";
+
+/* Title of the diagnostic info screen */
+"[DiagLog/title]" = "Диагностика";
+
 /* Notification/confirmation message */
 "[Diagnostics] Diagnostic log has been copied to clipboard." = "Журнал диагностики скопирован в буфер обмена.";
 
@@ -453,6 +474,12 @@
 
 /* Default name of a newly created entry field */
 "[Entry/Edit/CreateField/defaultName] Field Name" = "Название поля";
+
+/* Notification: a reference to an entry field has been copied to clipboard */
+"[Entry/Field/CopyReference/acknowledgement]" = "Ссылка на поле скопирована в буфер обмена";
+
+/* Action: copy a reference to the selected entry field to clipboard */
+"[Entry/Field/CopyReference/action]" = "Скопировать ссылку на поле";
 
 /* Name of an entry field */
 "[Entry/Field/name] Notes" = "Заметки";
@@ -520,6 +547,9 @@
 /* Error message shown when there's internal inconsistency in KeePassium. */
 "[FileAccessError/internalError]" = "Внутренняя ошибка KeePassium. Пожалуйста, сообщите нам об этом.";
 
+/* Error message: network access is forbidden by system or app settings. */
+"[FileAccessError/NetworkAccessDenied/generic]" = "Сетевой доступ заблокирован в настройках.";
+
 /* Error message: storage provider app (e.g. Google Drive) does not respond to requests. */
 "[FileAccessError/NoResponse/genericFileProvider]" = "Хранилище файлов не отвечает.";
 
@@ -567,6 +597,9 @@
 
 /* Title of a setting: is the file exluded from iCloud/iTunes backup. For example: `Exclude From Backup: <Yes>` */
 "[FileInfo/isExcludedFromBackup/title]" = "Исключить из резервной копии iCloud/iTunes";
+
+/* Title of a dialog with file details (name, size, dates) */
+"[FileInfo/title]" = "Информация о файле";
 
 /* Error message [reason: String] */
 "[FileKeeper] Failed to delete file. Reason: %@" = "Не удалось удалить файл. Причина: %@";
@@ -681,6 +714,12 @@
 
 /* Title of the dialog for picking the destination group for move/copy operations */
 "[General/DestinationGroup/title] Choose a Destination" = "Выберите место назначения";
+
+/* Feature status: disabled/inactive. Keep it short, possibly abbreviated. */
+"[General/Feature/Off]" = "Выкл.";
+
+/* Feature status: enabled/active. Keep it short, possibly abbreviated. */
+"[General/Feature/On]" = "Вкл.";
 
 /* Action/button to cancel whatever is going on */
 "[Generic] Cancel" = "Отменить";
@@ -862,6 +901,9 @@
 /* Generic title of in-app help article */
 "[Help Viewer/title]" = "Справка";
 
+/* Name of an entry field. Acronym `HOTP` should not be translated. */
+"[HOTP/FieldName]" = "Одноразовый пароль (HOTP)";
+
 /* Notification that an archived/historical item (e.g entry) has been successfully restored */
 "[Item/History/Restored]" = "Предыдущая версия восстановлена";
 
@@ -901,6 +943,9 @@
 /* Menu item: show information about file (name, size, dates) */
 "[Menu/FileInfo/title]" = "Информация о файле";
 
+/* Name of an entry field */
+"[OTP/FieldName]" = "Одноразовый пароль";
+
 /* Error shown when scanned QR code cannot be used for OTP */
 "[OTP/Scan/InvalidData]" = "Этот QR-код не подходит для настройки одноразового пароля (OTP).";
 
@@ -909,6 +954,114 @@
 
 /* Call for action. Acronym `OTP` should not be translated. */
 "[OTP/Setup]" = "Настроить одноразовый пароль (OTP)";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/CannotGenerateText/title]" = "Невозможно сгенерировать текст";
+
+/* Description of an empty character set for password generator. 'Empty' as 'there are no characters'. */
+"[PasswordGenerator/CustomSet/Empty/title]" = "Пусто";
+
+/* User-defined set of characters for password generator. */
+"[PasswordGenerator/CustomSet/title]" = "Пользовательские символы";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/DesiredLengthTooShort/title]" = "Увеличьте длину хотя бы до %d.";
+
+/* Action/button: generate random text/password/phrase */
+"[PasswordGenerator/Generate/action]" = "Сгенерировать";
+
+/* Description of randomly generated text/password/phrase */
+"[PasswordGenerator/GeneratedText/title]" = "Сгенерированный текст";
+
+/* Inclusion criterion for a password generator. For example: `Digits: Allowed` */
+"[PasswordGenerator/InclusionCondition/allowed]" = "Разрешено";
+
+/* Inclusion criterion for a password generator. For example: `Uppercase Letters: Excluded` */
+"[PasswordGenerator/InclusionCondition/excluded]" = "Исключено";
+
+/* Inclusion criterion for a password generator — a disabled/inactive one that won't be taken into account. For example: `Uppercase Letters: Inactive` */
+"[PasswordGenerator/InclusionCondition/inactive]" = "Неактивно";
+
+/* Inclusion criterion for a password generator. For example: `Special Symbols: Required` */
+"[PasswordGenerator/InclusionCondition/required]" = "Обязательно";
+
+/* Length (number of characters) of the random text to generate */
+"[PasswordGenerator/Length/title]" = "Длина";
+
+/* Description of a password generator parameter. For example, the digit in 'abc222def'. */
+"[PasswordGenerator/MaxConsecutive/description]" = "Максимальное количество последовательных одинаковых символов.";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/MaxConsecutiveNotSatisfiable/title]" = "Увеличьте максимальное количество повторяющихся одинаковых элементов.";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Basic/title]" = "Простой";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Expert/title]" = "Экспертный";
+
+/* One of the operation modes of the random text generator, where it generates random phrases. */
+"[PasswordGenerator/Mode/Passphrase/title]" = "Парольная фраза";
+
+/* Operation mode of the random text generator (for example, `Basic`, `Expert`, `Passphrase`) */
+"[PasswordGenerator/Mode/title]" = "Режим";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/NotEnoughElementsToSample/title]" = "Нужно больше элементов для выбора.";
+
+/* Length (number of characters) of the password to generate */
+"[PasswordGenerator/PasswordLength/title]" = "Длина пароля";
+
+/* Error message from the random text generator. `required` and `excluded` are as in [PasswordGenerator/InclusionCondition/required] and [PasswordGenerator/InclusionCondition/excluded] */
+"[PasswordGenerator/RequiredSetCompletelyExcluded/title]" = "Один из наборов символов - обязательный и в то же время исключённый.";
+
+/* Title for digits (like '123') */
+"[PasswordGenerator/Set/Digits/title]" = "Цифры";
+
+/* Title for look-alike symbols (like '1lI', that is: digit `1`, small `L`, capital `i`). */
+"[PasswordGenerator/Set/Lookalikes/title]" = "Похожие символы";
+
+/* Title for lowercase letters (like 'abc') */
+"[PasswordGenerator/Set/Lowercase/title]" = "Строчные буквы";
+
+/* Title for special symbols (like '@#$') */
+"[PasswordGenerator/Set/Specials/title]" = "Специальные символы";
+
+/* Title for uppercase letters (like 'ABC') */
+"[PasswordGenerator/Set/Uppercase/title]" = "Прописные буквы";
+
+/* Name of the space character. https://en.wikipedia.org/wiki/Space_(punctuation) */
+"[PasswordGenerator/SpaceCharacter/name]" = "Пробел";
+
+/* Title of the random text/password/username generator dialog. */
+"[PasswordGenerator/title]" = "Генератор паролей";
+
+/* Character to be inserted between words of a passphrase. */
+"[PasswordGenerator/Word Separtor/title]" = "Разделитель";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/lowerCase]" = "нижний регистр";
+
+/* Case of letters in a word (e.g. UPPER, lower, Title Case) */
+"[PasswordGenerator/WordCase/title]" = "Регистр букв";
+
+/* Word capitalization style: first letters of significant words capitalized. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/titleCase]" = "Первая Заглавная";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/upperCase]" = "ВЕРХНИЙ РЕГИСТР";
+
+/* Number of words in a generated passphrase. In context: 'Words: 5' */
+"[PasswordGenerator/WordCount/title]" = "Слов";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFLarge/title]" = "Большой список EFF (7776 слов)";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFShort/title]" = "Малый список EFF (1296 слов)";
+
+/* List of words to be used for a passphrase. */
+"[PasswordGenerator/Wordlist/title]" = "Список слов";
 
 /* Explanation of the premium feature */
 "[Premium/Benefits/AttachmentPreview/details]" = "Просматривайте прикреплённые файлы прямо в KeePassium, не оставляя следов в других приложениях. (Работает с изображениями, документами, архивами и другими файлами.)";
@@ -1036,6 +1189,9 @@
 /* Status: validity period of once-and-forever premium */
 "[Premium/status] Valid forever" = "Навсегда";
 
+/* Status when the user has a premium version */
+"[Premium/Status/title]" = "Полная версия";
+
 /* Subscription conditions */
 "[Premium/Subscription/Legal/text]" = "Оплата будет снята с вашего аккаунта Apple ID после подтверждения покупки. \n\nПодписка автоматически возобновляется, если не отменена минимум за 24 часа до конца текущего периода. Плата за продление подписки будет снята с вашего аккаунта в течение суток до окончания текущего периода. \n\nВы можете изменить или отменить подписки, зайдя в настройки своего аккаунта в App Store после покупки.";
 
@@ -1129,6 +1285,15 @@
 /* Title of a premium feature: show relevant AutoFill entries right under the input field */
 "[PremiumFeature/QuickAutoFill/title]" = "Быстрое автозаполнение";
 
+/* A brief summary of the privacy policy (for offline mode) */
+"[PrivacyPolicy/Offline/text]" = "KeePassium не собирает персональные или аналитические данные и никому их не передаёт.";
+
+/* A brief summary of the privacy policy (for online mode) */
+"[PrivacyPolicy/Online/text]" = "KeePassium не собирает никаких персональных или аналитических данных.\nНекоторые функции могут включать обмен данными с внешними сервисами (по вашему запросу и с единственной целью сделать эти сервисы доступными для вас). Такой обмен регулируется политикой конфиденциальности соответствующего сервиса.";
+
+/* Section: privacy policy */
+"[PrivacyPolicy/title]" = "Политика конфиденциальности";
+
 /* Explanation/notification when a long-running operation was cancelled by user */
 "[Progress/CancellationReason] Cancelled by user" = "Отменено пользователем";
 
@@ -1141,8 +1306,35 @@
 /* Name of a feature that shows relevant entries directly next to the login/password forms. */
 "[QuickAutoFill/title]" = "Быстрое автозаполнение";
 
+/* Network security setting */
+"[RemoteConnection/AllowUntrusted/title]" = "Разрешить ненадёжный сертификат";
+
+/* Network connection. For example `Connection: WebDAV` or `Connection: MyCloud`. */
+"[RemoteConnection/Connection/title]" = "Соединение";
+
+/* Action: connect to a network server */
+"[RemoteConnection/connectToServer]" = "Подключиться к серверу";
+
+/* Title of a section: username, password, etc */
+"[RemoteConnection/Credentials]" = "Учётные данные";
+
+/* Error message: user credentials rejected by the server */
+"[RemoteConnection/Error/AuthenticationFailed/title]" = "Ошибка авторизации";
+
+/* Network address of a file */
+"[RemoteConnection/FileURL]" = "URL файла";
+
+/* Title: connection to a network storage */
+"[RemoteConnection/title]" = "Удалённое соединение";
+
 /* Name of an input field for entering the password again */
 "[Repeat Password/Field/title]" = "Повторить пароль";
+
+/* Call to action (protect the app from unauthorized access) */
+"[Settings/AppLoc/Activate/callToAction]" = "Активируйте защиту приложения";
+
+/* Description of `Activate app protection` call to action. */
+"[Settings/AppLock/Activate/description]" = "Защищает KeePassium от неавторизованного доступа.";
 
 /* Settings switch: whether AppLock is allowed to use Touch ID/Face ID. Example: 'Use Touch ID'. [biometryTypeName: String] */
 "[Settings/AppLock/Biometric/title] Use %@" = "Использовать %@";
@@ -1158,6 +1350,9 @@
 
 /* Settings: subtitle of the `App Protection` section when biometric auth is not available. */
 "[Settings/AppLock/subtitle] App Lock, passcode, timeout" = "Блокировка приложения, код доступа, задержки";
+
+/* Settings section: protection of the app from unauthorized access */
+"[Settings/AppLock/title]" = "Защита приложения";
 
 /* A description/subtitle for Settings/AppLockTimeout options that trigger when the user has been idle for a while. For example: 'AppLock Timeout: 3 seconds (After last interaction) */
 "[Settings/AppLockTimeout/description] After last interaction" = "После бездействия";
@@ -1183,8 +1378,20 @@
 /* Description for the AutoFill setup instructions */
 "[Settings/AutoFill/Activate/description]" = "Вначале нужно включить Автозаполнение в системных настройках.";
 
+/* Title of an option: copy one-time password to clipboard when using AutoFill */
+"[Settings/AutoFill/CopyOTP/title]" = "Копировать одноразовый пароль";
+
 /* Title of a help article on how to activate AutoFill. */
 "[Settings/AutoFill/Setup Guide/title]" = "Руководство по настройке Автозаполнения";
+
+/* Title of AutoFill settings screen */
+"[Settings/AutoFill/title]" = "Автозаполнение паролей";
+
+/* Title of an option: automatically use the single best match found by AutoFill search */
+"[Settings/AutoFill/UsePerfectMatch/title]" = "Автоматически подставлять идеальный вариант";
+
+/* Option in settings: whether to open the last used database automatically on start. */
+"[Settings/AutoOpenPreviousDatabase/title]" = "Автоматически открывать предыдущую базу";
 
 /* Action to delete all backup files from the app. `ALL` is in capitals as a highlight. [backupFileCount: Int] */
 "[Settings/Backup] Delete ALL Backup Files (%d)" = "Удалить ВСЕ резервные копии (%d)";
@@ -1219,6 +1426,9 @@
 /* An option in Settings. Will be shown as 'Clipboard Timeout: Never' */
 "[Settings/ClipboardTimeout/shortTitle] Never" = "Никогда";
 
+/* Title of a settings section: backup of databases */
+"[Settings/DatabaseBackup/title]" = "Резервирование";
+
 /* Description of the Database Lock Timeout */
 "[Settings/DatabaseLockTimeout/description] If you are not interacting with the app for some time, the database will be closed for your safety. To open it, you will need to enter its master password again." = "Если вы не используете приложение в течение некоторого времени, база паролей будет автоматически закрыта и заблокирована. Чтобы открыть её, нужно будет снова ввести мастер-пароль.";
 
@@ -1236,6 +1446,12 @@
 
 /* An option in Settings. Will be shown as 'Database Lock: Timeout: Never' */
 "[Settings/DatabaseLockTimeout/shortTitle] Never" = "Никогда";
+
+/* Subtitle for `Data Protection` section in settings */
+"[Settings/DataProtection/subtitle]" = "Мастер-ключи, ключевые файлы";
+
+/* Settings section: protection of databases, their keys and data inside them */
+"[Settings/DataProtection/title]" = "Защита данных";
 
 /* An option in Group Viewer settings. Refers fo the most recent time when the entry was modified. Will be shown as 'Entry Subtitle: Last Modified Date'. */
 "[Settings/EntryListDetail/longTitle] Last Modified Date" = "Дата изменения";
@@ -1263,6 +1479,24 @@
 
 /* Title of list view configuration screen */
 "[Settings/ListSettings/title]" = "Вид списка";
+
+/* Settings section: how/whether the app is allowed to use networks/Internet */
+"[Settings/NetworkAccess/title]" = "Доступ к сети";
+
+/* Description of the `Stay Offline` mode. */
+"[Settings/NetworkAccessMode/Offline/description]" = "Максимальная конфиденциальность";
+
+/* Setting option: the app should work offline */
+"[Settings/NetworkAccessMode/Offline/title]" = "Оставаться офлайн";
+
+/* Description of the `Allow Network Access` mode. */
+"[Settings/NetworkAccessMode/Online/description]" = "Максимальная функциональность";
+
+/* Setting option: the app is permitted to use online features */
+"[Settings/NetworkAccessMode/Online/title]" = "Разрешить доступ к сети";
+
+/* Section title in settings */
+"[Settings/Search/title]" = "Поиск";
 
 /* Title of a sort options list. Example: 'Sort by: Name' */
 "[SortBy]" = "Сортировка";
@@ -1315,6 +1549,9 @@
 /* Call to action, title of the tip box/donation screen. */
 "[TipBox/title/3]" = "Поддержите KeePassium";
 
+/* Name of an entry field. Acronym `TOTP` should not be translated. */
+"[TOTP/FieldName]" = "Одноразовый пароль (TOTP)";
+
 /* Human-readable file location. The file is situated either online / in cloud storage, or on the same device, but in some other app. Example: 'File Location: Cloud storage / Another app' */
 "[URLReference/Location] Cloud storage / Another app" = "Онлайн / В другом приложении";
 
@@ -1350,6 +1587,9 @@
 
 /* Warning message when the user tries to use a database as a key file */
 "KeePass database should not be used as key file. Please pick a different file." = "База паролей KeePass не должна использоваться в качестве ключевого файла. Выберите другой файл.";
+
+/* Placeholder shown when there are no database files available */
+"No database files" = "Нет ни одной базы паролей";
 
 /* Settings switch: whether to include backup copies in the file list */
 "Show Backup Files" = "Показывать резервные копии";

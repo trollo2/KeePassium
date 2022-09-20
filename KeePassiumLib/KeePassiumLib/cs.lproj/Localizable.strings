@@ -1,8 +1,17 @@
+/* Menu item that shows info about KeePassium app */
+"[About/altTitle]" = "O aplikaci";
+
+/* Copyright notice */
+"[About/CopyrightAuthor]" = "©Andrei Popleteev";
+
 /* Suggestion/hint for available user action */
 "[Accessibility] Double tap to copy to clipboard" = "Dvojitým poklepáním zkopírujete do schránky";
 
 /* Title of a setting option: font size */
 "[Appearance/TextSize/title]" = "Velikost písma";
+
+/* Group of settings for user interface appearance (text size, icons, etc) */
+"[Appearance/title]" = "Vzhled";
 
 /* Action/button to unlock the App Lock with passcode */
 "[AppLock] Unlock" = "Odemknout";
@@ -82,6 +91,9 @@
 /* Notification: an item has been copied to clipboard */
 "[Clipboard/Copy/notification]" = "Zkopírováno";
 
+/* Subtitle for `Contact Us`. Keep it short. */
+"[ContactUs/subtitle]" = "Návrhy? Problémy? Dejte nám vědět!";
+
 /* Error message about AES cipher. [errorCode: Int] */
 "[CryptoError] AES decryption error (code %d)" = "Chyba AES dešifrování (kód %d)";
 
@@ -122,7 +134,7 @@
 "[Database/Delete/Confirm/text] Delete database file?\n Make sure you have a backup." = "Odstranit databázový soubor?\n Ujistěte se, že máte zálohu.";
 
 /* Notification when user tries to copy data from KDBX to older KDB database. */
-"[Database/LesserTargetFormat/warning]" = "This is an older database format, some data might be lost.";
+"[Database/LesserTargetFormat/warning]" = "Formát této databáze je zastaralý, některá data mohou být ztracena.";
 
 /* Error message */
 "[Database/Load/Error] Cannot find database file" = "Nelze najít databázi";
@@ -143,7 +155,7 @@
 "[Database/Load/Error] Unrecognized database format" = "Nerozpoznaný formát databáze";
 
 /* Message shown after we show a cached local database instead of the (unavailable) original database. */
-"[Database/Loading/FromCache/text]" = "The database is unreachable.\nThis is its latest local copy.";
+"[Database/Loading/FromCache/text]" = "Databáze je nedostupná.\nToto je její nejnovější lokální kopie.";
 
 /* Message shown if current database cannot be edited */
 "[Database/Loading/ReadOnly/text]" = "Databáze je pouze pro čtení";
@@ -206,40 +218,40 @@
 "[Database/Saving/Status] Saving..." = "Ukládání...";
 
 /* File settings parameter: time after which file will be considered unreachable. Example: `Consider File Unreachable: in 10 seconds`.) */
-"[Database/Settings/ConsiderFileUnreachable/title]" = "Consider File Unreachable";
+"[Database/Settings/ConsiderFileUnreachable/title]" = "Považovat soubor za nedostupný";
 
 /* Title: what to do when (remote) file cannot be loaded. (For example: `If File is Unreachable: Show Error`.) */
-"[Database/Settings/FallbackStrategy/ShowError/title]" = "Show Error";
+"[Database/Settings/FallbackStrategy/ShowError/title]" = "Zobrazit chybu";
 
 /* File settings parameter: what to do when (remote) file cannot be loaded. (For example: `If File is Unreachable: Use Local Copy`.) */
-"[Database/Settings/FallbackStrategy/title]" = "If File is Unreachable";
+"[Database/Settings/FallbackStrategy/title]" = "Pokud je soubor nedostupný";
 
 /* Title: what to do when (remote) file cannot be loaded. (For example: `If File is Unreachable: Use Local Copy`.) */
-"[Database/Settings/FallbackStrategy/UseCache/title]" = "Use Local Copy";
+"[Database/Settings/FallbackStrategy/UseCache/title]" = "Použít lokální kopii";
 
 /* Title of settings section (read-only, backup-able, etc) */
-"[Database/Settings/FileAccess/title]" = "File Access";
+"[Database/Settings/FileAccess/title]" = "Přístup k souboru";
 
 /* File setting title, whether the file can be modified (yes/no). */
-"[Database/Settings/ReadOnly/title]" = "Read Only";
+"[Database/Settings/ReadOnly/title]" = "Pouze pro čtení";
 
 /* Title of database-related settings screen */
-"[Database/Settings/title]" = "Database Settings";
+"[Database/Settings/title]" = "Nastavení Databáze";
 
 /* Action/button to switch from current to some other database. */
-"[Database/Switch/action]" = "Switch Database";
+"[Database/Switch/action]" = "Změnit Databázi";
 
 /* Explanation of the database sync conflict `Cancel` option. */
 "[Database/SyncConflict/Cancel/description]" = "Zrušit ukládání, ponechat cílový soubor nedotčený.";
 
 /* Title: the current (on-server) database version in case of sync conflict. */
-"[Database/SyncConflict/currentVersion]" = "Current version";
+"[Database/SyncConflict/currentVersion]" = "Aktuální verze";
 
 /* Message shown in case of database sync conflict. */
 "[Database/SyncConflict/description]" = "Databáze se změnila od doby, kdy byla načtena v KeePassium.";
 
 /* Title: the loaded (on-device) database version in case of sync conflict. */
-"[Database/SyncConflict/loadedVersion]" = "Loaded version";
+"[Database/SyncConflict/loadedVersion]" = "Lokální verze";
 
 /* Action: combine changes in two conflicting databases. */
 "[Database/SyncConflict/Merge/action]" = "Sloučit";
@@ -421,6 +433,12 @@
 /* Error message: user provided a wrong master key for decryption. */
 "[DatabaseError] Invalid password or key file" = "Chybné heslo nebo klíčový soubor";
 
+/* Subtitle for `Diagnostic Log`. Keep it short. */
+"[DiagLog/subtitle]" = "Pro řešení problémů";
+
+/* Title of the diagnostic info screen */
+"[DiagLog/title]" = "Diagnostické zprávy";
+
 /* Notification/confirmation message */
 "[Diagnostics] Diagnostic log has been copied to clipboard." = "Diagnostické zprávy byly zkopírovány.";
 
@@ -567,6 +585,9 @@
 
 /* Title of a setting: is the file exluded from iCloud/iTunes backup. For example: `Exclude From Backup: <Yes>` */
 "[FileInfo/isExcludedFromBackup/title]" = "Vyloučit ze zálohy iCloudu/iTunes";
+
+/* Title of a dialog with file details (name, size, dates) */
+"[FileInfo/title]" = "Informace o souboru";
 
 /* Error message [reason: String] */
 "[FileKeeper] Failed to delete file. Reason: %@" = "Nepodařilo se odstranit soubor. Důvod: %@";
@@ -862,6 +883,9 @@
 /* Generic title of in-app help article */
 "[Help Viewer/title]" = "Nápověda";
 
+/* Name of an entry field. Acronym `HOTP` should not be translated. */
+"[HOTP/FieldName]" = "Jednorázové heslo (HOTP)";
+
 /* Notification that an archived/historical item (e.g entry) has been successfully restored */
 "[Item/History/Restored]" = "Předchozí verze obnovena";
 
@@ -900,6 +924,9 @@
 
 /* Menu item: show information about file (name, size, dates) */
 "[Menu/FileInfo/title]" = "Informace o souboru";
+
+/* Name of an entry field */
+"[OTP/FieldName]" = "Jednorázové heslo";
 
 /* Error shown when scanned QR code cannot be used for OTP */
 "[OTP/Scan/InvalidData]" = "Tento QR kód není vhodný pro nastavení OTP.";
@@ -1036,6 +1063,9 @@
 /* Status: validity period of once-and-forever premium */
 "[Premium/status] Valid forever" = "Platný navždy";
 
+/* Status when the user has a premium version */
+"[Premium/Status/title]" = "Prémiová verze";
+
 /* Subscription conditions */
 "[Premium/Subscription/Legal/text]" = "Platba bude účtována na váš Apple účet při potvrzení koupě.\n\nPředplatné se automaticky obnoví, pokud nebude zrušeno nejméně 24 hodin před koncem aktuálního období. Platba za obnovení předplatného bude stržena až 24 hodin před vypršením aktuálního období.\n\nSvé předplatné můžete spravovat v nastavení účtu v App Store.";
 
@@ -1124,10 +1154,16 @@
 "[PremiumFeature/Preview/title] Preview Attachments" = "Náhled příloh";
 
 /* Description/call to action for the `Quick AutoFill` premium feature. */
-"[PremiumFeature/QuickAutoFill/description]" = "Fill out login forms with a single tap, without even opening KeePassium.";
+"[PremiumFeature/QuickAutoFill/description]" = "Vyplňujte přihlašovací formuláře jediným klepnutím, dokonce i bez otevření KeePassium.";
 
 /* Title of a premium feature: show relevant AutoFill entries right under the input field */
-"[PremiumFeature/QuickAutoFill/title]" = "Quick AutoFill";
+"[PremiumFeature/QuickAutoFill/title]" = "Automatické Vyplňování";
+
+/* A brief summary of the privacy policy (for offline mode) */
+"[PrivacyPolicy/Offline/text]" = "KeePassium neshromažďuje žádná osobní nebo analytická data a ani je s nikým nesdílí.";
+
+/* Section: privacy policy */
+"[PrivacyPolicy/title]" = "Zásady ochrany osobních údajů";
 
 /* Explanation/notification when a long-running operation was cancelled by user */
 "[Progress/CancellationReason] Cancelled by user" = "Zrušeno uživatelem";
@@ -1136,13 +1172,19 @@
 "[Progress/CancellationReason/lowMemory]" = "Nedostatek paměti pro pokračování.\nTo se může stát s velkými databázemi nebo s příliš ambiciózním nastavením databáze (Argon2).";
 
 /* Description of the Quick AutoFill feature. */
-"[QuickAutoFill/description]" = "Quick AutoFill shows relevant entries right next to the password field, without opening KeePassium.";
+"[QuickAutoFill/description]" = "Automatické Vyplňování zobrazí relevantní položky vedle pole s heslem bez otevření KeePassium.";
 
 /* Name of a feature that shows relevant entries directly next to the login/password forms. */
-"[QuickAutoFill/title]" = "Quick AutoFill";
+"[QuickAutoFill/title]" = "Automatické Vyplňování";
 
 /* Name of an input field for entering the password again */
 "[Repeat Password/Field/title]" = "Zopakujte heslo";
+
+/* Call to action (protect the app from unauthorized access) */
+"[Settings/AppLoc/Activate/callToAction]" = "Zapnout zámek";
+
+/* Description of `Activate app protection` call to action. */
+"[Settings/AppLock/Activate/description]" = "Chraňte KeePassium před neoprávněným přístupem.";
 
 /* Settings switch: whether AppLock is allowed to use Touch ID/Face ID. Example: 'Use Touch ID'. [biometryTypeName: String] */
 "[Settings/AppLock/Biometric/title] Use %@" = "Používat %@";
@@ -1158,6 +1200,9 @@
 
 /* Settings: subtitle of the `App Protection` section when biometric auth is not available. */
 "[Settings/AppLock/subtitle] App Lock, passcode, timeout" = "Zámek, kód aplikace, časový limit";
+
+/* Settings section: protection of the app from unauthorized access */
+"[Settings/AppLock/title]" = "Ochrana aplikace";
 
 /* A description/subtitle for Settings/AppLockTimeout options that trigger when the user has been idle for a while. For example: 'AppLock Timeout: 3 seconds (After last interaction) */
 "[Settings/AppLockTimeout/description] After last interaction" = "Po poslední interakci";
@@ -1178,13 +1223,25 @@
 "[Settings/AppLockTimeout/shortTitle] Never" = "Nikdy";
 
 /* Action that opens system settings or instructions */
-"[Settings/AutoFill/Activate/action]" = "Activate AutoFill";
+"[Settings/AutoFill/Activate/action]" = "Aktivovat Automatické Vyplňování";
 
 /* Description for the AutoFill setup instructions */
-"[Settings/AutoFill/Activate/description]" = "Before first use, you need to activate AutoFill in system settings.";
+"[Settings/AutoFill/Activate/description]" = "Před prvním použitím je třeba aktivovat Automatické vyplňování v nastavení systému.";
+
+/* Title of an option: copy one-time password to clipboard when using AutoFill */
+"[Settings/AutoFill/CopyOTP/title]" = "Kopírovat jednorázové hesla";
 
 /* Title of a help article on how to activate AutoFill. */
-"[Settings/AutoFill/Setup Guide/title]" = "AutoFill Setup Guide";
+"[Settings/AutoFill/Setup Guide/title]" = "Nastavení Automatického Vyplňování";
+
+/* Title of AutoFill settings screen */
+"[Settings/AutoFill/title]" = "Vyplňování hesel";
+
+/* Title of an option: automatically use the single best match found by AutoFill search */
+"[Settings/AutoFill/UsePerfectMatch/title]" = "Vyplnit přesné výsledky automaticky";
+
+/* Option in settings: whether to open the last used database automatically on start. */
+"[Settings/AutoOpenPreviousDatabase/title]" = "Automaticky načíst minule otevřenou databázi";
 
 /* Action to delete all backup files from the app. `ALL` is in capitals as a highlight. [backupFileCount: Int] */
 "[Settings/Backup] Delete ALL Backup Files (%d)" = "Odstranit VŠECHNY zálohy (%d)";
@@ -1219,6 +1276,9 @@
 /* An option in Settings. Will be shown as 'Clipboard Timeout: Never' */
 "[Settings/ClipboardTimeout/shortTitle] Never" = "Nikdy";
 
+/* Title of a settings section: backup of databases */
+"[Settings/DatabaseBackup/title]" = "Záloha databáze";
+
 /* Description of the Database Lock Timeout */
 "[Settings/DatabaseLockTimeout/description] If you are not interacting with the app for some time, the database will be closed for your safety. To open it, you will need to enter its master password again." = "Jakmile po vybranou dobu aplikaci nepoužijete, dojde pro vaší bezpečnost k uzavření databáze. Pro její opětovné otevření bude nutné zadat hlavní heslo.";
 
@@ -1236,6 +1296,12 @@
 
 /* An option in Settings. Will be shown as 'Database Lock: Timeout: Never' */
 "[Settings/DatabaseLockTimeout/shortTitle] Never" = "Nikdy";
+
+/* Subtitle for `Data Protection` section in settings */
+"[Settings/DataProtection/subtitle]" = "Hlavní klíče, soubory s klíčem";
+
+/* Settings section: protection of databases, their keys and data inside them */
+"[Settings/DataProtection/title]" = "Ochrana dat";
 
 /* An option in Group Viewer settings. Refers fo the most recent time when the entry was modified. Will be shown as 'Entry Subtitle: Last Modified Date'. */
 "[Settings/EntryListDetail/longTitle] Last Modified Date" = "Datum poslední změny";
@@ -1264,17 +1330,20 @@
 /* Title of list view configuration screen */
 "[Settings/ListSettings/title]" = "Nastavení";
 
+/* Section title in settings */
+"[Settings/Search/title]" = "Vyhledávání";
+
 /* Title of a sort options list. Example: 'Sort by: Name' */
-"[SortBy]" = "Sort By";
+"[SortBy]" = "Seřadit dle";
 
 /* List sorting option. Example: 'Sort by: Date Created' */
-"[SortBy/DateCreated]" = "Date Created";
+"[SortBy/DateCreated]" = "Datum Vytvoření";
 
 /* List sorting option. Example: 'Sort by: Date Modified' */
-"[SortBy/DateModified]" = "Date Modified";
+"[SortBy/DateModified]" = "Datum Změny";
 
 /* List sorting option (for file names). Example: 'Sort by: Name' */
-"[SortBy/FileName]" = "Name";
+"[SortBy/FileName]" = "Název";
 
 /* List sorting option (for groups and entries). Example: 'Sort by: Title' */
 "[SortBy/ItemTitle]" = "Název";
@@ -1315,6 +1384,9 @@
 /* Call to action, title of the tip box/donation screen. */
 "[TipBox/title/3]" = "Podpořte KeePassium";
 
+/* Name of an entry field. Acronym `TOTP` should not be translated. */
+"[TOTP/FieldName]" = "Jednorázové heslo (TOTP)";
+
 /* Human-readable file location. The file is situated either online / in cloud storage, or on the same device, but in some other app. Example: 'File Location: Cloud storage / Another app' */
 "[URLReference/Location] Cloud storage / Another app" = "Cloudové úložiště / další aplikace";
 
@@ -1350,6 +1422,9 @@
 
 /* Warning message when the user tries to use a database as a key file */
 "KeePass database should not be used as key file. Please pick a different file." = "KeePass databáze by neměla být použita jako soubor s klíčem. Prosím, vyberte jiný soubor.";
+
+/* Placeholder shown when there are no database files available */
+"No database files" = "Žádný databázový soubor";
 
 /* Settings switch: whether to include backup copies in the file list */
 "Show Backup Files" = "Zobrazovat zálohy";

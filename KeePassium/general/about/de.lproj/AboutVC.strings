@@ -1,6 +1,3 @@
-/* Class = "UITableViewSection"; headerTitle = "Troubleshooting"; ObjectID = "0mb-N7-JBa"; Note = "#bc-ignore!"; */
-"0mb-N7-JBa.headerTitle" = "Troubleshooting";
-
 /* Class = "UITableViewSection"; headerTitle = "Feedback"; ObjectID = "7bL-fQ-OUc"; Note = "Section: user feedback about the app"; */
 "7bL-fQ-OUc.headerTitle" = "Feedback";
 
@@ -16,8 +13,8 @@
 /* Class = "UILabel"; text = "Base32 for Swift by Norio Nomura"; ObjectID = "9MZ-zt-75x"; */
 "9MZ-zt-75x.text" = "Base32 für Swift von Norio Nomura";
 
-/* Class = "UILabel"; text = "KeePassium does not collect any personal or analytical data nor share it with anyone."; ObjectID = "9wt-nj-TZW"; */
-"9wt-nj-TZW.text" = "KeePassium sammelt weder persönliche oder analytische Daten, noch teilt irgendwelche Daten mit Dritten.";
+/* Class = "UILabel"; text = "CC BY 3.0"; ObjectID = "86n-Hc-6m7"; */
+"86n-Hc-6m7.text" = "CC BY 3.0";
 
 /* Class = "UILabel"; text = "MIT license"; ObjectID = "Aig-jg-p8B"; */
 "Aig-jg-p8B.text" = "MIT Lizenz";
@@ -36,12 +33,6 @@
 
 /* Class = "UILabel"; text = "MIT license"; ObjectID = "bAq-tq-nuY"; */
 "bAq-tq-nuY.text" = "MIT Lizenz";
-
-/* Class = "UILabel"; text = "©2021 Andrei Popleteev"; ObjectID = "bmf-Ed-H4x"; */
-"bmf-Ed-H4x.text" = "©2021 Andrei Popleteev";
-
-/* Class = "UILabel"; text = "Accept input from AutoFill providers"; ObjectID = "bTY-d6-puv"; Note = "#bc-ignore!"; */
-"bTY-d6-puv.text" = "Accept input from AutoFill providers";
 
 /* Class = "UILabel"; text = "KeePass by Dominik Reichl"; ObjectID = "CNI-b8-7Da"; */
 "CNI-b8-7Da.text" = "KeePass von Dominik Reichl";
@@ -88,11 +79,11 @@
 /* Class = "UILabel"; text = "GPL license"; ObjectID = "JRy-jy-KXb"; */
 "JRy-jy-KXb.text" = "GPL Lizenz";
 
-/* Class = "UILabel"; text = "{info@keepassium.com}"; ObjectID = "kae-Kb-5ZU"; Note = "#bc-ignore!"; */
-"kae-Kb-5ZU.text" = "{info@keepassium.com}";
-
 /* Class = "UILabel"; text = "Fancy deboss pattern by Daniel Beaton"; ObjectID = "Kdg-Hz-XOQ"; */
 "Kdg-Hz-XOQ.text" = "Fancy Deboss-Pattern von Daniel Beaton";
+
+/* Class = "UILabel"; text = "Passphrase wordlists by EFF"; ObjectID = "kvO-9B-1Sy"; */
+"kvO-9B-1Sy.text" = "Passwort-Wortlisten von EFF";
 
 /* Class = "UILabel"; text = "MIT license"; ObjectID = "lht-LP-o0Y"; */
 "lht-LP-o0Y.text" = "MIT Lizenz";
@@ -144,9 +135,6 @@
 
 /* Class = "UILabel"; text = "Leave an App Store review."; ObjectID = "uiw-Qh-pNp"; Note = "Second part of the 'Do you like what you see? / Leave an App Store review.\""; */
 "uiw-Qh-pNp.text" = "App im Appstore bewerten.";
-
-/* Class = "UILabel"; text = "{v1.0.123}"; ObjectID = "vDg-fF-8ty"; Note = "#bc-ignore!"; */
-"vDg-fF-8ty.text" = "{v1.0.123}";
 
 /* Class = "UILabel"; text = "KeyboardLayoutConstraint by James Tang"; ObjectID = "vg0-6M-OIq"; */
 "vg0-6M-OIq.text" = "KeyboardLayoutConstraint by James Tang";

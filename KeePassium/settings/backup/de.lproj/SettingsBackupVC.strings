@@ -1,5 +1,5 @@
 /* Class = "UILabel"; text = "Show Backup Files"; ObjectID = "aEK-cJ-9bc"; Note = "Settings option: whether to show backup copies in the list of database files"; */
-"aEK-cJ-9bc.text" = "Sicherungsdateien anzeigen";
+"aEK-cJ-9bc.text" = "Gesicherte Dateien anzeigen";
 
 /* Class = "UITableViewSection"; footerTitle = "KeePassium can automatically delete old backup files to free up some storage space."; ObjectID = "B3L-Dk-Uq3"; Note = "Settings section of the `Keep Backup Files` option"; */
 "B3L-Dk-Uq3.footerTitle" = "KeePassium kann automatisch alte Sicherungsdateien löschen, um Speicherplatz zu freigeben.";
@@ -22,17 +22,8 @@
 /* Class = "UITableViewSection"; footerTitle = "Before saving a database, KeePassium will automatically make a copy, just in case."; ObjectID = "nBI-OF-9iV"; Note = "Explanation for the `Make Backup Copies` option"; */
 "nBI-OF-9iV.footerTitle" = "Bevor Sie eine Datenbank speichern, wird KeePassium automatisch eine Kopie erstellen; nur zur Sicherheit.";
 
-/* Class = "UITableViewController"; title = "Database Backup"; ObjectID = "nSy-3u-0xW"; */
-"nSy-3u-0xW.title" = "Datenbank-Backup";
-
-/* Class = "UILabel"; text = "{N days}"; ObjectID = "PKe-6p-Ssr"; Note = "#bc-ignore!"; */
-"PKe-6p-Ssr.text" = "{N days}";
-
 /* Class = "UILabel"; text = "Exclude Backup Files from System Backup"; ObjectID = "Qs6-uS-gdS"; Note = "Settings option, on/off"; */
 "Qs6-uS-gdS.text" = "Sicherungsdateien aus der Systemsicherung ausschließen";
-
-/* Class = "UIButton"; normalTitle = "{Delete ALL Backup Files (1)}"; ObjectID = "RXF-mN-5RB"; Note = "#bc-ignore!"; */
-"RXF-mN-5RB.normalTitle" = "{Delete ALL Backup Files (1)}";
 
 /* Class = "UITableViewSection"; footerTitle = "Backup copies will appear along with the original files."; ObjectID = "XeH-7q-aad"; Note = "Explanation for the `Show Backup Files` option"; */
 "XeH-7q-aad.footerTitle" = "Sicherungskopien werden zusammen mit den Originaldateien angezeigt.";

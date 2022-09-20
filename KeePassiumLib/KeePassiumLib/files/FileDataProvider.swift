@@ -8,12 +8,9 @@
 
 import Foundation
 
-public final class FileDataProvider: Synchronizable {
+public final class FileDataProvider {
     public static let defaultTimeout = URLReference.defaultTimeout
-    
-    public typealias FileOperationResult<T> = Result<T, FileAccessError>
-    public typealias FileOperationCompletion<T> = (FileOperationResult<T>) -> Void
-    
+        
     fileprivate static let backgroundQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.name = "FileDataProvider"
@@ -22,29 +19,29 @@ public final class FileDataProvider: Synchronizable {
         return queue
     }()
     
-    fileprivate static let coordinatorWaitingQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.name = "FileCoordinatorQueue"
-        queue.qualityOfService = .utility
-        queue.maxConcurrentOperationCount = 8
-        return queue
-    }()
+    fileprivate static let coordinatorSyncQueue = DispatchQueue(
+        label: "CoordinatorSyncQueue",
+        qos: .utility,
+        attributes: []
+    )
 }
 
 extension FileDataProvider {
     
-    public static func bookmarkFile(
+    internal static func bookmarkFile(
         at fileURL: URL,
         location: URLReference.Location,
+        creationHandler: @escaping (URL, URLReference.Location) throws -> URLReference,
         completionQueue: OperationQueue,
         completion: @escaping FileOperationCompletion<URLReference>
     ) {
-        let isAccessed = fileURL.startAccessingSecurityScopedResource()
-
         let operationQueue = FileDataProvider.backgroundQueue
+        let isAccessed = fileURL.startAccessingSecurityScopedResource()
+        let dataSource = DataSourceFactory.getDataSource(for: fileURL)
         coordinateFileOperation(
+            accessCoordinator: dataSource.getAccessCoordinator(),
             intent: .readingIntent(with: fileURL, options: [.withoutChanges]),
-            fileProvider: nil, 
+            fileProvider: FileProvider.find(for: fileURL), 
             byTime: .now() + FileDataProvider.defaultTimeout,
             queue: operationQueue,
             fileOperation: { url in
@@ -56,7 +53,7 @@ extension FileDataProvider {
                 }
                 
                 do {
-                    let fileRef = try URLReference(from: url, location: location)
+                    let fileRef = try creationHandler(url, location)
                     completionQueue.addOperation {
                         completion(.success(fileRef))
                     }
@@ -83,32 +80,29 @@ extension FileDataProvider {
     ) {
         let operationQueue = FileDataProvider.backgroundQueue
         let completionQueue = completionQueue ?? FileDataProvider.backgroundQueue
+        
         let isAccessed = fileURL.startAccessingSecurityScopedResource()
-
+        let dataSource = DataSourceFactory.getDataSource(for: fileURL)
         coordinateFileOperation(
+            accessCoordinator: dataSource.getAccessCoordinator(),
             intent: .readingIntent(with: fileURL, options: [.resolvesSymbolicLink, .withoutChanges]),
             fileProvider: fileProvider,
             byTime: byTime,
             queue: operationQueue,
-            fileOperation: { url in
+            fileOperation: { coordinatedURL in
                 assert(operationQueue.isCurrent)
                 defer {
                     if isAccessed {
                         fileURL.stopAccessingSecurityScopedResource()
                     }
                 }
-                if let inputStream = InputStream(url: url) {
-                    defer {
-                        inputStream.close()
-                    }
-                    var dummyBuffer = [UInt8](repeating: 0, count: 8)
-                    inputStream.read(&dummyBuffer, maxLength: dummyBuffer.count)
-                } else {
-                    Diag.warning("Failed to fetch the file")
-                }
                 
-                url.readFileInfo(
+                dataSource.readFileInfo(
+                    at: coordinatedURL,
+                    fileProvider: fileProvider,
                     canUseCache: canUseCache,
+                    byTime: byTime,
+                    queue: operationQueue,
                     completionQueue: completionQueue,
                     completion: completion
                 )
@@ -130,9 +124,9 @@ extension FileDataProvider {
         fileRef.resolveAsync(byTime: byTime, callbackQueue: operationQueue) {
             assert(operationQueue.isCurrent)
             switch $0 {
-            case .success(let fileURL):
+            case .success(let prefixedFileURL):
                 read(
-                    fileURL,
+                    prefixedFileURL,
                     fileProvider: fileRef.fileProvider,
                     queue: operationQueue,
                     byTime: byTime,
@@ -159,31 +153,28 @@ extension FileDataProvider {
         let operationQueue = queue ?? FileDataProvider.backgroundQueue
         let completionQueue = completionQueue ?? FileDataProvider.backgroundQueue
         let isAccessed = fileURL.startAccessingSecurityScopedResource()
-
+        let dataSource = DataSourceFactory.getDataSource(for: fileURL)
         coordinateFileOperation(
+            accessCoordinator: dataSource.getAccessCoordinator(),
             intent: .readingIntent(with: fileURL, options: [.forUploading]),
             fileProvider: fileProvider,
             byTime: byTime,
             queue: operationQueue,
-            fileOperation: { (url) in
+            fileOperation: { (coordinatedURL) in
                 assert(operationQueue.isCurrent)
                 defer {
                     if isAccessed {
                         fileURL.stopAccessingSecurityScopedResource()
                     }
                 }
-                do {
-                    let fileData = try ByteArray(contentsOf: url, options: [.uncached, .mappedIfSafe])
-                    completionQueue.addOperation {
-                        completion(.success(fileData))
-                    }
-                } catch {
-                    Diag.error("Failed to read file [message: \(error.localizedDescription)]")
-                    let fileAccessError = FileAccessError.systemError(error)
-                    completionQueue.addOperation {
-                        completion(.failure(fileAccessError))
-                    }
-                }
+                dataSource.read(
+                    coordinatedURL,
+                    fileProvider: fileProvider,
+                    byTime: byTime,
+                    queue: operationQueue,
+                    completionQueue: completionQueue,
+                    completion: completion
+                )
             },
             completionQueue: completionQueue,
             completion: completion
@@ -201,32 +192,31 @@ extension FileDataProvider {
     ) {
         let operationQueue = queue ?? FileDataProvider.backgroundQueue
         let completionQueue = completionQueue ?? FileDataProvider.backgroundQueue
+        
         let isAccessed = fileURL.startAccessingSecurityScopedResource()
-
+        let dataSource = DataSourceFactory.getDataSource(for: fileURL)
         coordinateFileOperation(
+            accessCoordinator: dataSource.getAccessCoordinator(),
             intent: .writingIntent(with: fileURL, options: [.forMerging]),
             fileProvider: fileProvider,
             byTime: byTime,
             queue: operationQueue,
-            fileOperation: { url in
+            fileOperation: { coordintedURL in
                 assert(operationQueue.isCurrent)
                 defer {
                     if isAccessed {
                         fileURL.stopAccessingSecurityScopedResource()
                     }
                 }
-                do {
-                    try data.write(to: url, options: [])
-                    completionQueue.addOperation {
-                        completion(.success)
-                    }
-                } catch {
-                    Diag.error("Failed to write file [message: \(error.localizedDescription)")
-                    let fileAccessError = FileAccessError.systemError(error)
-                    completionQueue.addOperation {
-                        completion(.failure(fileAccessError))
-                    }
-                }
+                dataSource.write(
+                    data,
+                    to: coordintedURL,
+                    fileProvider: fileProvider,
+                    byTime: byTime,
+                    queue: operationQueue,
+                    completionQueue: completionQueue,
+                    completion: completion
+                )
             },
             completionQueue: completionQueue,
             completion: completion
@@ -237,16 +227,18 @@ extension FileDataProvider {
         to fileURL: URL,
         fileProvider: FileProvider?,
         queue: OperationQueue? = nil,
-        dataSource: @escaping (_ remoteURL: URL, _ remoteData: ByteArray) throws -> ByteArray?,
+        outputDataSource: @escaping (_ url: URL, _ newData: ByteArray) throws -> ByteArray?,
         byTime: DispatchTime = .now() + FileDataProvider.defaultTimeout,
         completionQueue: OperationQueue? = nil,
         completion: @escaping (Result<Void, FileAccessError>) -> Void
     ) {
         let operationQueue = queue ?? FileDataProvider.backgroundQueue
         let completionQueue = completionQueue ?? FileDataProvider.backgroundQueue
+        
         let isAccessed = fileURL.startAccessingSecurityScopedResource()
-
+        let dataSource = DataSourceFactory.getDataSource(for: fileURL)
         coordinateReadThenWriteOperation(
+            accessCoordinator: dataSource.getAccessCoordinator(),
             fileURL: fileURL,
             fileProvider: fileProvider,
             byTime: byTime,
@@ -258,38 +250,16 @@ extension FileDataProvider {
                         fileURL.stopAccessingSecurityScopedResource()
                     }
                 }
-                
-                if let inputStream = InputStream(url: readURL) {
-                    defer {
-                        inputStream.close()
-                    }
-                    var dummyBuffer = [UInt8](repeating: 0, count: 8)
-                    inputStream.read(&dummyBuffer, maxLength: dummyBuffer.count)
-                } else {
-                    Diag.warning("Failed to fetch the file")
-                }
-                
-
-                do {
-                    let fileData = try ByteArray(contentsOf: readURL, options: [.uncached, .mappedIfSafe])
-                    if let dataToWrite = try dataSource(readURL, fileData) { 
-                        try dataToWrite.write(to: writeURL, options: [])
-                    }
-                    completionQueue.addOperation {
-                        completion(.success)
-                    }
-                } catch let fileAccessError as FileAccessError {
-                    Diag.error("Failed to write file [message: \(fileAccessError.localizedDescription)")
-                    completionQueue.addOperation {
-                        completion(.failure(fileAccessError))
-                    }
-                } catch {
-                    Diag.error("Failed to write file [message: \(error.localizedDescription)")
-                    let fileAccessError = FileAccessError.systemError(error)
-                    completionQueue.addOperation {
-                        completion(.failure(fileAccessError))
-                    }
-                }
+                dataSource.readThenWrite(
+                    from: readURL,
+                    to: writeURL,
+                    fileProvider: fileProvider,
+                    outputDataSource: outputDataSource,
+                    byTime: byTime,
+                    queue: operationQueue,
+                    completionQueue: completionQueue,
+                    completion: completion
+                )
             },
             completionQueue: completionQueue,
             completion: completion
@@ -300,6 +270,7 @@ extension FileDataProvider {
 
 extension FileDataProvider {
     private static func coordinateFileOperation<T>(
+        accessCoordinator: FileAccessCoordinator,
         intent: NSFileAccessIntent,
         fileProvider: FileProvider?,
         byTime: DispatchTime,
@@ -308,38 +279,46 @@ extension FileDataProvider {
         completionQueue: OperationQueue,
         completion: @escaping FileOperationCompletion<T>
     ) {
-        coordinatorWaitingQueue.addOperation {
-            let semaphore = DispatchSemaphore(value: 0)
-            
-            let fileCoordinator = NSFileCoordinator()
-            fileCoordinator.coordinate(with: [intent], queue: queue) {
-                (coordinatorError) in
-                assert(queue.isCurrent)
-                guard semaphore.signal() != 0 else { 
-                    return
+        var hasStartedCoordinating = false
+        var hasTimedOut = false
+        coordinatorSyncQueue.asyncAfter(deadline: byTime) {
+            if hasStartedCoordinating {
+                return
+            }
+            hasTimedOut = true
+            accessCoordinator.cancel()
+            completionQueue.addOperation {
+                completion(.failure(.timeout(fileProvider: fileProvider)))
+            }
+        }
+        
+        accessCoordinator.coordinate(with: [intent], queue: queue) {
+            (coordinatorError) in
+            assert(queue.isCurrent)
+            let canContinue = coordinatorSyncQueue.sync(execute: { () -> Bool in
+                if hasTimedOut {
+                    return false
                 }
-                
-                if let coordinatorError = coordinatorError {
-                    completionQueue.addOperation {
-                        completion(.failure(.systemError(coordinatorError)))
-                    }
-                    return
-                }
-                
-                fileOperation(intent.url)
+                hasStartedCoordinating = true
+                return true
+            })
+            guard canContinue else { 
+                return
             }
             
-            if semaphore.wait(timeout: byTime) == .timedOut {
-                fileCoordinator.cancel()
+            if let coordinatorError = coordinatorError {
                 completionQueue.addOperation {
-                    completion(.failure(.timeout(fileProvider: fileProvider)))
+                    completion(.failure(.systemError(coordinatorError)))
                 }
                 return
             }
+            
+            fileOperation(intent.url)
         }
     }
     
     private static func coordinateReadThenWriteOperation<T>(
+        accessCoordinator: FileAccessCoordinator,
         fileURL: URL,
         fileProvider: FileProvider?,
         byTime: DispatchTime,
@@ -348,36 +327,43 @@ extension FileDataProvider {
         completionQueue: OperationQueue,
         completion: @escaping FileOperationCompletion<T>
     ) {
-        coordinatorWaitingQueue.addOperation {
-            let semaphore = DispatchSemaphore(value: 0)
-            
-            let fileCoordinator = NSFileCoordinator()
-            let readingIntent = NSFileAccessIntent.readingIntent(with: fileURL, options: [])
-            let writingIntent = NSFileAccessIntent.writingIntent(with: fileURL, options: [.forMerging])
-            fileCoordinator.coordinate(with: [readingIntent, writingIntent], queue: queue) {
-                (coordinatorError) in
-                assert(queue.isCurrent)
-                guard semaphore.signal() != 0 else { 
-                    return
+        var hasStartedCoordinating = false
+        var hasTimedOut = false
+        coordinatorSyncQueue.asyncAfter(deadline: byTime) {
+            if hasStartedCoordinating {
+                return
+            }
+            hasTimedOut = true
+            accessCoordinator.cancel()
+            completionQueue.addOperation {
+                completion(.failure(.timeout(fileProvider: fileProvider)))
+            }
+        }
+        
+        let readingIntent = NSFileAccessIntent.readingIntent(with: fileURL, options: [])
+        let writingIntent = NSFileAccessIntent.writingIntent(with: fileURL, options: [.forMerging])
+        accessCoordinator.coordinate(with: [readingIntent, writingIntent], queue: queue) {
+            (coordinatorError) in
+            assert(queue.isCurrent)
+            let canContinue = coordinatorSyncQueue.sync(execute: { () -> Bool in
+                if hasTimedOut {
+                    return false 
                 }
-                
-                if let coordinatorError = coordinatorError {
-                    completionQueue.addOperation {
-                        completion(.failure(.systemError(coordinatorError)))
-                    }
-                    return
-                }
-                
-                fileOperation(readingIntent.url, writingIntent.url)
+                hasStartedCoordinating = true
+                return true
+            })
+            guard canContinue else { 
+                return
             }
             
-            if semaphore.wait(timeout: byTime) == .timedOut {
-                fileCoordinator.cancel()
+            if let coordinatorError = coordinatorError {
                 completionQueue.addOperation {
-                    completion(.failure(.timeout(fileProvider: fileProvider)))
+                    completion(.failure(.systemError(coordinatorError)))
                 }
                 return
             }
+            
+            fileOperation(readingIntent.url, writingIntent.url)
         }
     }
 }

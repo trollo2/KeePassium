@@ -28,7 +28,7 @@ final class AboutCoordinator: Coordinator {
     }
     
     func start() {
-        setupDoneButton()
+        setupCloseButton()
         router.push(aboutVC, animated: true, onPop: { [weak self] in
             guard let self = self else { return }
             self.removeAllChildCoordinators()
@@ -36,16 +36,16 @@ final class AboutCoordinator: Coordinator {
         })
     }
     
-    private func setupDoneButton() {
+    private func setupCloseButton() {
         guard router.navigationController.topViewController == nil else {
             return
         }
         
-        let doneButton = UIBarButtonItem(
-            barButtonSystemItem: .done,
+        let closeButton = UIBarButtonItem(
+            barButtonSystemItem: .close,
             target: self,
             action: #selector(didPressDismiss))
-        aboutVC.navigationItem.rightBarButtonItem = doneButton
+        aboutVC.navigationItem.leftBarButtonItem = closeButton
     }
     
     @objc
@@ -64,7 +64,7 @@ extension AboutCoordinator: AboutDelegate {
         AppStoreHelper.writeReview()
     }
     
-    func didPressOpenLicense(url: URL, at popoverAnchor: PopoverAnchor, in viewController: AboutVC) {
+    func didPressOpenURL(_ url: URL, at popoverAnchor: PopoverAnchor, in viewController: AboutVC) {
         AppGroup.applicationShared?.open(url, options: [:], completionHandler: nil)
     }
 }

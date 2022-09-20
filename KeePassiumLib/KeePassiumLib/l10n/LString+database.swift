@@ -204,13 +204,12 @@ extension LString {
         value: "Show Backup Files",
         comment: "Settings switch: whether to include backup copies in the file list"
     )
-    public static let menuFileInfo = NSLocalizedString(
-        "[Menu/FileInfo/title]",
+    public static let titleNoDatabaseFiles = NSLocalizedString(
+        "No database files",
         bundle: Bundle.framework,
-        value: "File Info",
-        comment: "Menu item: show information about file (name, size, dates)"
-    )
-    
+        value: "No database files",
+        comment: "Placeholder shown when there are no database files available")
+
     
     public static let databaseLastEditedByTemplate = NSLocalizedString(
         "[Database/Opened/Warning/lastEdited] Database was last edited by: %@",

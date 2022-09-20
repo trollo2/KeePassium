@@ -1,8 +1,20 @@
+/* Menu item that shows info about KeePassium app */
+"[About/altTitle]" = "Over KeePassium";
+
+/* Copyright notice */
+"[About/CopyrightAuthor]" = "©Andrei Popleteev";
+
 /* Suggestion/hint for available user action */
 "[Accessibility] Double tap to copy to clipboard" = "Dubbeltikken om naar klembord te kopiëren";
 
+/* Call to action: perform accessibilty `activate` action to listen to text/content. */
+"[Accessibility/activateToListen]" = "Activeer om te luisteren.";
+
 /* Title of a setting option: font size */
 "[Appearance/TextSize/title]" = "Tekstgrootte";
+
+/* Group of settings for user interface appearance (text size, icons, etc) */
+"[Appearance/title]" = "Vormgeving";
 
 /* Action/button to unlock the App Lock with passcode */
 "[AppLock] Unlock" = "Ontgrendel";
@@ -81,6 +93,9 @@
 
 /* Notification: an item has been copied to clipboard */
 "[Clipboard/Copy/notification]" = "Gekopieerd";
+
+/* Subtitle for `Contact Us`. Keep it short. */
+"[ContactUs/subtitle]" = "Suggesties? Problemen? Laat het ons weten!";
 
 /* Error message about AES cipher. [errorCode: Int] */
 "[CryptoError] AES decryption error (code %d)" = "AES-decryptiefout (code %d)";
@@ -421,6 +436,12 @@
 /* Error message: user provided a wrong master key for decryption. */
 "[DatabaseError] Invalid password or key file" = "Ongeldig wachtwoord of sleutelbestand";
 
+/* Subtitle for `Diagnostic Log`. Keep it short. */
+"[DiagLog/subtitle]" = "Voor probleemoplossing van deskundigen";
+
+/* Title of the diagnostic info screen */
+"[DiagLog/title]" = "Diagnostisch logbestand";
+
 /* Notification/confirmation message */
 "[Diagnostics] Diagnostic log has been copied to clipboard." = "Diagnostisch logbestand is gekopieerd naar het klembord.";
 
@@ -453,6 +474,12 @@
 
 /* Default name of a newly created entry field */
 "[Entry/Edit/CreateField/defaultName] Field Name" = "Veldnaam";
+
+/* Notification: a reference to an entry field has been copied to clipboard */
+"[Entry/Field/CopyReference/acknowledgement]" = "Veldverwijzing gekopieerd naar klembord";
+
+/* Action: copy a reference to the selected entry field to clipboard */
+"[Entry/Field/CopyReference/action]" = "Kopieer veldverwijzing";
 
 /* Name of an entry field */
 "[Entry/Field/name] Notes" = "Notities";
@@ -520,6 +547,9 @@
 /* Error message shown when there's internal inconsistency in KeePassium. */
 "[FileAccessError/internalError]" = "Interne KeePassium-fout. Meld dit aan ons.";
 
+/* Error message: network access is forbidden by system or app settings. */
+"[FileAccessError/NetworkAccessDenied/generic]" = "Netwerktoegang wordt geblokkeerd door de instellingen.";
+
 /* Error message: storage provider app (e.g. Google Drive) does not respond to requests. */
 "[FileAccessError/NoResponse/genericFileProvider]" = "De opslagdienst reageert niet.";
 
@@ -567,6 +597,9 @@
 
 /* Title of a setting: is the file exluded from iCloud/iTunes backup. For example: `Exclude From Backup: <Yes>` */
 "[FileInfo/isExcludedFromBackup/title]" = "Uitsluiten van iCloud/iTunes back-up";
+
+/* Title of a dialog with file details (name, size, dates) */
+"[FileInfo/title]" = "Bestandsinformatie";
 
 /* Error message [reason: String] */
 "[FileKeeper] Failed to delete file. Reason: %@" = "Kan bestand niet verwijderen. Reden: %@";
@@ -681,6 +714,12 @@
 
 /* Title of the dialog for picking the destination group for move/copy operations */
 "[General/DestinationGroup/title] Choose a Destination" = "Kies een bestemming";
+
+/* Feature status: disabled/inactive. Keep it short, possibly abbreviated. */
+"[General/Feature/Off]" = "Uit";
+
+/* Feature status: enabled/active. Keep it short, possibly abbreviated. */
+"[General/Feature/On]" = "Aan";
 
 /* Action/button to cancel whatever is going on */
 "[Generic] Cancel" = "Annuleer";
@@ -862,6 +901,9 @@
 /* Generic title of in-app help article */
 "[Help Viewer/title]" = "Hulp";
 
+/* Name of an entry field. Acronym `HOTP` should not be translated. */
+"[HOTP/FieldName]" = "Eenmalig wachtwoord (HOTP)";
+
 /* Notification that an archived/historical item (e.g entry) has been successfully restored */
 "[Item/History/Restored]" = "De vorige versie is hersteld";
 
@@ -901,6 +943,9 @@
 /* Menu item: show information about file (name, size, dates) */
 "[Menu/FileInfo/title]" = "Bestandsinformatie";
 
+/* Name of an entry field */
+"[OTP/FieldName]" = "Eenmalig wachtwoord";
+
 /* Error shown when scanned QR code cannot be used for OTP */
 "[OTP/Scan/InvalidData]" = "Deze QR-code is niet geschikt voor OTP-instellingen.";
 
@@ -909,6 +954,114 @@
 
 /* Call for action. Acronym `OTP` should not be translated. */
 "[OTP/Setup]" = "Stel eenmalig wachtwoord in (OTP)";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/CannotGenerateText/title]" = "Er kan geen tekst worden gegenereerd";
+
+/* Description of an empty character set for password generator. 'Empty' as 'there are no characters'. */
+"[PasswordGenerator/CustomSet/Empty/title]" = "Leeg";
+
+/* User-defined set of characters for password generator. */
+"[PasswordGenerator/CustomSet/title]" = "Aangepaste tekens";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/DesiredLengthTooShort/title]" = "Breid de wachtwoordlengte uit naar %d of meer tekens.";
+
+/* Action/button: generate random text/password/phrase */
+"[PasswordGenerator/Generate/action]" = "Genereer";
+
+/* Description of randomly generated text/password/phrase */
+"[PasswordGenerator/GeneratedText/title]" = "Gegenereerde tekst";
+
+/* Inclusion criterion for a password generator. For example: `Digits: Allowed` */
+"[PasswordGenerator/InclusionCondition/allowed]" = "Toegestaan";
+
+/* Inclusion criterion for a password generator. For example: `Uppercase Letters: Excluded` */
+"[PasswordGenerator/InclusionCondition/excluded]" = "Uitgesloten";
+
+/* Inclusion criterion for a password generator — a disabled/inactive one that won't be taken into account. For example: `Uppercase Letters: Inactive` */
+"[PasswordGenerator/InclusionCondition/inactive]" = "Inactief";
+
+/* Inclusion criterion for a password generator. For example: `Special Symbols: Required` */
+"[PasswordGenerator/InclusionCondition/required]" = "Vereist";
+
+/* Length (number of characters) of the random text to generate */
+"[PasswordGenerator/Length/title]" = "Lengte";
+
+/* Description of a password generator parameter. For example, the digit in 'abc222def'. */
+"[PasswordGenerator/MaxConsecutive/description]" = "Maximaal aantal herhaalde tekens achter elkaar.";
+
+/* Error message/call to action from the random text generator. */
+"[PasswordGenerator/MaxConsecutiveNotSatisfiable/title]" = "Breid het aantal herhaalde tekens achter elkaar uit.";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Basic/title]" = "Basis";
+
+/* One of the operation modes of the random text generator */
+"[PasswordGenerator/Mode/Expert/title]" = "Expert";
+
+/* One of the operation modes of the random text generator, where it generates random phrases. */
+"[PasswordGenerator/Mode/Passphrase/title]" = "Wachtzin";
+
+/* Operation mode of the random text generator (for example, `Basic`, `Expert`, `Passphrase`) */
+"[PasswordGenerator/Mode/title]" = "Modus";
+
+/* Error message from the random text generator. */
+"[PasswordGenerator/NotEnoughElementsToSample/title]" = "Meer elementen nodig om uit te kiezen.";
+
+/* Length (number of characters) of the password to generate */
+"[PasswordGenerator/PasswordLength/title]" = "Wachtwoordlengte";
+
+/* Error message from the random text generator. `required` and `excluded` are as in [PasswordGenerator/InclusionCondition/required] and [PasswordGenerator/InclusionCondition/excluded] */
+"[PasswordGenerator/RequiredSetCompletelyExcluded/title]" = "Een van de tekensets is zowel vereist als uitgesloten.";
+
+/* Title for digits (like '123') */
+"[PasswordGenerator/Set/Digits/title]" = "Cijfers";
+
+/* Title for look-alike symbols (like '1lI', that is: digit `1`, small `L`, capital `i`). */
+"[PasswordGenerator/Set/Lookalikes/title]" = "Verwarrende tekens";
+
+/* Title for lowercase letters (like 'abc') */
+"[PasswordGenerator/Set/Lowercase/title]" = "Kleine letters";
+
+/* Title for special symbols (like '@#$') */
+"[PasswordGenerator/Set/Specials/title]" = "Speciale tekens";
+
+/* Title for uppercase letters (like 'ABC') */
+"[PasswordGenerator/Set/Uppercase/title]" = "Hoofdletters";
+
+/* Name of the space character. https://en.wikipedia.org/wiki/Space_(punctuation) */
+"[PasswordGenerator/SpaceCharacter/name]" = "Spatie";
+
+/* Title of the random text/password/username generator dialog. */
+"[PasswordGenerator/title]" = "Willekeurige generator";
+
+/* Character to be inserted between words of a passphrase. */
+"[PasswordGenerator/Word Separtor/title]" = "Scheidingsteken";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/lowerCase]" = "kleine letters";
+
+/* Case of letters in a word (e.g. UPPER, lower, Title Case) */
+"[PasswordGenerator/WordCase/title]" = "Lettervorm";
+
+/* Word capitalization style: first letters of significant words capitalized. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/titleCase]" = "Elk Woord Met Beginhoofdletter";
+
+/* Word capitalization style. Written in that style, if possible. */
+"[PasswordGenerator/WordCase/upperCase]" = "HOOFDLETTERS";
+
+/* Number of words in a generated passphrase. In context: 'Words: 5' */
+"[PasswordGenerator/WordCount/title]" = "Woorden";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFLarge/title]" = "Grote woordenlijst van EFF (7.776 woorden)";
+
+/* Name of a wordlist for passphrase generator. `EFF` is an organization name. */
+"[PasswordGenerator/Wordlist/EFFShort/title]" = "Korte woordenlijst van EFF (1.296 woorden)";
+
+/* List of words to be used for a passphrase. */
+"[PasswordGenerator/Wordlist/title]" = "Woordenlijst";
 
 /* Explanation of the premium feature */
 "[Premium/Benefits/AttachmentPreview/details]" = "Bekijk bijlagen direct in KeePassium en laat geen sporen achter in andere apps. (werkt met afbeeldingen, documenten, archieven en nog veel meer)";
@@ -1036,6 +1189,9 @@
 /* Status: validity period of once-and-forever premium */
 "[Premium/status] Valid forever" = "Permanent geldig";
 
+/* Status when the user has a premium version */
+"[Premium/Status/title]" = "Premium-versie";
+
 /* Subscription conditions */
 "[Premium/Subscription/Legal/text]" = "De betaling wordt in rekening gebracht op je Apple ID-account bij de bevestiging van de aankoop. \n\nHet abonnement wordt automatisch verlengd, tenzij het ten minste 24 uur voor het einde van de huidige periode wordt geannuleerd. Je account wordt binnen 24 uur voor het einde van de huidige periode belast. \n\nJe kunt je abonnementen beheren en annuleren door na aankoop naar je accountinstellingen te gaan in de App Store.";
 
@@ -1129,6 +1285,15 @@
 /* Title of a premium feature: show relevant AutoFill entries right under the input field */
 "[PremiumFeature/QuickAutoFill/title]" = "Snel automatisch invullen";
 
+/* A brief summary of the privacy policy (for offline mode) */
+"[PrivacyPolicy/Offline/text]" = "KeePassium verzamelt geen persoonlijke of analytische gegevens en deel deze met niemand.";
+
+/* A brief summary of the privacy policy (for online mode) */
+"[PrivacyPolicy/Online/text]" = "KeePassium verzamelt geen persoonlijke of analytische gegevens.\nSommige functies kunnen betrekking hebben op de uitwisseling van gegevens met externe diensten (op eigen verzoek en uitsluitend om deze diensten beschikbaar te stellen). Een dergelijke uitwisseling wordt bepaald door het privacybeleid van de betreffende dienst.";
+
+/* Section: privacy policy */
+"[PrivacyPolicy/title]" = "Privacybeleid";
+
 /* Explanation/notification when a long-running operation was cancelled by user */
 "[Progress/CancellationReason] Cancelled by user" = "Afgebroken door gebruiker";
 
@@ -1141,8 +1306,35 @@
 /* Name of a feature that shows relevant entries directly next to the login/password forms. */
 "[QuickAutoFill/title]" = "Snel automatisch invullen";
 
+/* Network security setting */
+"[RemoteConnection/AllowUntrusted/title]" = "Sta onvertrouwd certificaat toe";
+
+/* Network connection. For example `Connection: WebDAV` or `Connection: MyCloud`. */
+"[RemoteConnection/Connection/title]" = "Verbinding";
+
+/* Action: connect to a network server */
+"[RemoteConnection/connectToServer]" = "Verbind met server";
+
+/* Title of a section: username, password, etc */
+"[RemoteConnection/Credentials]" = "Inloggegevens";
+
+/* Error message: user credentials rejected by the server */
+"[RemoteConnection/Error/AuthenticationFailed/title]" = "Authenticatie mislukt";
+
+/* Network address of a file */
+"[RemoteConnection/FileURL]" = "Bestandsurl";
+
+/* Title: connection to a network storage */
+"[RemoteConnection/title]" = "Externe verbinding";
+
 /* Name of an input field for entering the password again */
 "[Repeat Password/Field/title]" = "Herhaal wachtwoord";
+
+/* Call to action (protect the app from unauthorized access) */
+"[Settings/AppLoc/Activate/callToAction]" = "Schakel appbeveiliging in";
+
+/* Description of `Activate app protection` call to action. */
+"[Settings/AppLock/Activate/description]" = "Bescherm KeePassium tegen ongeautoriseerde toegang.";
 
 /* Settings switch: whether AppLock is allowed to use Touch ID/Face ID. Example: 'Use Touch ID'. [biometryTypeName: String] */
 "[Settings/AppLock/Biometric/title] Use %@" = "Gebruik %@";
@@ -1158,6 +1350,9 @@
 
 /* Settings: subtitle of the `App Protection` section when biometric auth is not available. */
 "[Settings/AppLock/subtitle] App Lock, passcode, timeout" = "App-vergrendeling, toegangscode, time-out";
+
+/* Settings section: protection of the app from unauthorized access */
+"[Settings/AppLock/title]" = "Appbeveiliging";
 
 /* A description/subtitle for Settings/AppLockTimeout options that trigger when the user has been idle for a while. For example: 'AppLock Timeout: 3 seconds (After last interaction) */
 "[Settings/AppLockTimeout/description] After last interaction" = "Na laatste interactie";
@@ -1183,8 +1378,20 @@
 /* Description for the AutoFill setup instructions */
 "[Settings/AutoFill/Activate/description]" = "Voordat je automatisch invullen kunt gebruiken, moet je deze functie in Instellingen activeren.";
 
+/* Title of an option: copy one-time password to clipboard when using AutoFill */
+"[Settings/AutoFill/CopyOTP/title]" = "Kopieer OTP naar klembord";
+
 /* Title of a help article on how to activate AutoFill. */
 "[Settings/AutoFill/Setup Guide/title]" = "Gids voor automatisch invullen";
+
+/* Title of AutoFill settings screen */
+"[Settings/AutoFill/title]" = "Vul wachtwoorden automatisch in";
+
+/* Title of an option: automatically use the single best match found by AutoFill search */
+"[Settings/AutoFill/UsePerfectMatch/title]" = "Vul het meest overeenkomende resultaat automatisch in";
+
+/* Option in settings: whether to open the last used database automatically on start. */
+"[Settings/AutoOpenPreviousDatabase/title]" = "Open automatisch de vorige databank";
 
 /* Action to delete all backup files from the app. `ALL` is in capitals as a highlight. [backupFileCount: Int] */
 "[Settings/Backup] Delete ALL Backup Files (%d)" = "Verwijder alle back-upbestanden (%d)";
@@ -1219,6 +1426,9 @@
 /* An option in Settings. Will be shown as 'Clipboard Timeout: Never' */
 "[Settings/ClipboardTimeout/shortTitle] Never" = "Nooit";
 
+/* Title of a settings section: backup of databases */
+"[Settings/DatabaseBackup/title]" = "Databankback-up";
+
 /* Description of the Database Lock Timeout */
 "[Settings/DatabaseLockTimeout/description] If you are not interacting with the app for some time, the database will be closed for your safety. To open it, you will need to enter its master password again." = "Als je al even niks hebt gedaan in de app, dan wordt de databank omwille van de veiligheid gesloten. Voer je hoofdwachtwoord opnieuw in om de app weer te openen.";
 
@@ -1236,6 +1446,12 @@
 
 /* An option in Settings. Will be shown as 'Database Lock: Timeout: Never' */
 "[Settings/DatabaseLockTimeout/shortTitle] Never" = "Nooit";
+
+/* Subtitle for `Data Protection` section in settings */
+"[Settings/DataProtection/subtitle]" = "Hoofdsleutels, sleutelbestanden";
+
+/* Settings section: protection of databases, their keys and data inside them */
+"[Settings/DataProtection/title]" = "Gegevensbescherming";
 
 /* An option in Group Viewer settings. Refers fo the most recent time when the entry was modified. Will be shown as 'Entry Subtitle: Last Modified Date'. */
 "[Settings/EntryListDetail/longTitle] Last Modified Date" = "Laatst gewijzigd op";
@@ -1263,6 +1479,24 @@
 
 /* Title of list view configuration screen */
 "[Settings/ListSettings/title]" = "Lijstinstellingen";
+
+/* Settings section: how/whether the app is allowed to use networks/Internet */
+"[Settings/NetworkAccess/title]" = "Netwerktoegang";
+
+/* Description of the `Stay Offline` mode. */
+"[Settings/NetworkAccessMode/Offline/description]" = "Maximale privacy";
+
+/* Setting option: the app should work offline */
+"[Settings/NetworkAccessMode/Offline/title]" = "Offline blijven";
+
+/* Description of the `Allow Network Access` mode. */
+"[Settings/NetworkAccessMode/Online/description]" = "Maximale functionaliteit";
+
+/* Setting option: the app is permitted to use online features */
+"[Settings/NetworkAccessMode/Online/title]" = "Sta netwerktoegang toe";
+
+/* Section title in settings */
+"[Settings/Search/title]" = "Zoek";
 
 /* Title of a sort options list. Example: 'Sort by: Name' */
 "[SortBy]" = "Sorteer op";
@@ -1315,6 +1549,9 @@
 /* Call to action, title of the tip box/donation screen. */
 "[TipBox/title/3]" = "Ondersteun KeePassium";
 
+/* Name of an entry field. Acronym `TOTP` should not be translated. */
+"[TOTP/FieldName]" = "Eenmalig wachtwoord (TOTP)";
+
 /* Human-readable file location. The file is situated either online / in cloud storage, or on the same device, but in some other app. Example: 'File Location: Cloud storage / Another app' */
 "[URLReference/Location] Cloud storage / Another app" = "Cloud-opslag/Andere app";
 
@@ -1350,6 +1587,9 @@
 
 /* Warning message when the user tries to use a database as a key file */
 "KeePass database should not be used as key file. Please pick a different file." = "De KeePass-databank mag niet worden gebruikt als sleutelbestand. Kies een ander bestand.";
+
+/* Placeholder shown when there are no database files available */
+"No database files" = "Geen databankbestanden";
 
 /* Settings switch: whether to include backup copies in the file list */
 "Show Backup Files" = "Toon back-upbestanden";

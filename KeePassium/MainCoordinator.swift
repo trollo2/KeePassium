@@ -459,7 +459,7 @@ extension MainCoordinator: WatchdogDelegate {
     
     private func showAppLockScreen() {
         guard !isAppLockVisible else { return }
-        if canUseBiometrics() {
+        if canUseBiometrics() && !ProcessInfo.isRunningOnMac{
             performBiometricUnlock()
         } else {
             showPasscodeRequest()
@@ -673,6 +673,14 @@ extension MainCoordinator: DatabasePickerCoordinatorDelegate {
 }
 
 extension MainCoordinator: DatabaseUnlockerCoordinatorDelegate {
+    func shouldDismissFromKeyboard(_ coordinator: DatabaseUnlockerCoordinator) -> Bool {
+        if rootSplitVC.isCollapsed {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func shouldAutoUnlockDatabase(
         _ fileRef: URLReference,
         in coordinator: DatabaseUnlockerCoordinator

@@ -91,7 +91,7 @@ class PasscodeInputVC: UIViewController {
         refreshBiometricsButton()
         
         if shouldActivateKeyboard {
-            passcodeTextField.becomeFirstResponderWhenSafe()
+            showKeyboard()
         }
         super.viewWillAppear(animated)
     }
@@ -100,7 +100,7 @@ class PasscodeInputVC: UIViewController {
         super.viewDidAppear(animated)
         updateKeyboardLayoutConstraints()
         if shouldActivateKeyboard {
-            passcodeTextField.becomeFirstResponderWhenSafe()
+            showKeyboard()
         }
     }
     
@@ -113,10 +113,23 @@ class PasscodeInputVC: UIViewController {
     
     private func refreshBiometricsButton() {
         guard isViewLoaded else { return }
+
+        useBiometricsButton.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         useBiometricsButton.isHidden = !isBiometricsAllowed
+        if useBiometricsButton.isHidden {
+            mainButton.maskedCorners = [
+                .layerMinXMinYCorner,
+                .layerMinXMaxYCorner,
+                .layerMaxXMinYCorner,
+                .layerMaxXMaxYCorner
+            ]
+        } else {
+            mainButton.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        }
         
         let biometryType = LAContext.getBiometryType()
         useBiometricsButton.setImage(biometryType.icon, for: .normal)
+        useBiometricsButton.accessibilityLabel = biometryType.name
     }
     
     private func updateKeyboardLayoutConstraints() {
@@ -136,10 +149,16 @@ class PasscodeInputVC: UIViewController {
     }
     
     public func showKeyboard() {
+        view.window?.makeKey()
         passcodeTextField.becomeFirstResponderWhenSafe()
     }
     
     private func setKeyboardType(_ type: Settings.PasscodeKeyboardType) {
+        if ProcessInfo.isRunningOnMac || UIDevice.current.userInterfaceIdiom == .pad {
+            switchKeyboardButton.isHidden = true
+            return
+        }
+        
         Settings.current.passcodeKeyboardType = type
         let nextKeyboardTitle: String
         switch type {

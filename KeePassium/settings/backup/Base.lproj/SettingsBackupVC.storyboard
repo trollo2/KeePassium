@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Database Backup-->
+        <!--{Database Backup}-->
         <scene sceneID="ozz-dA-rkU">
             <objects>
-                <tableViewController storyboardIdentifier="SettingsBackupVC" title="Database Backup" id="nSy-3u-0xW" customClass="SettingsBackupVC" customModule="KeePassium" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsBackupVC" title="{Database Backup}" id="nSy-3u-0xW" customClass="SettingsBackupVC" customModule="KeePassium" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="AkD-Ud-4f0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,13 +139,14 @@
                                                         <action selector="didToggleExcludeFromSystemBackup:" destination="nSy-3u-0xW" eventType="valueChanged" id="GMj-Wa-QHn"/>
                                                     </connections>
                                                 </switch>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-icloud-backup-listitem" translatesAutoresizingMaskIntoConstraints="NO" id="pvX-2y-zf5">
-                                                    <rect key="frame" x="16" y="15" width="29" height="29"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pvX-2y-zf5">
+                                                    <rect key="frame" x="16" y="13" width="29" height="31.5"/>
                                                     <color key="tintColor" name="IconTint"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="29" id="NX9-UA-kYK"/>
                                                         <constraint firstAttribute="width" constant="29" id="PTX-bV-e41"/>
                                                     </constraints>
+                                                    <imageReference key="image" image="xmark.icloud" catalog="system" symbolScale="large"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -173,7 +175,7 @@
                                         <rect key="frame" x="0.0" y="450" width="320" height="48.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ljV-dR-Ihl" id="Apj-dQ-zIf">
-                                            <rect key="frame" x="0.0" y="0.0" width="294.5" height="48.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="295.5" height="48.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Keep Backup Files" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="G42-gR-eKm">
@@ -187,7 +189,7 @@
                                                     </attributedString>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="{N days}" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="PKe-6p-Ssr">
-                                                    <rect key="frame" x="231.5" y="16" width="55" height="17"/>
+                                                    <rect key="frame" x="232.5" y="16" width="55" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" name="AuxiliaryText"/>
@@ -268,9 +270,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="no-icloud-backup-listitem" width="29" height="29"/>
         <image name="settings-backup-duration-listitem" width="29" height="29"/>
         <image name="settings-backup-listitem" width="29" height="29"/>
+        <image name="xmark.icloud" catalog="system" width="128" height="88"/>
         <namedColor name="AuxiliaryText">
             <color red="0.23500001430511475" green="0.23500001430511475" blue="0.2630000114440918" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

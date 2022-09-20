@@ -1,11 +1,213 @@
 {
     "sections": [
         {
-            "version": "1.31",
-            "releaseDate": "2022-02-09T00:00:00Z",
+            "version": "1.36",
+            "releaseDate": "2022-09-03T00:00:00Z",
             "items": [
                 {
-                    "title": "🛠 Changed: Switched to a more lightweight method to access files",
+                    "title": "🧩 Added: \"Allow Network Access\" setting (off by default)",
+                    "type": 1
+                },
+                {
+                    "title": "🧩 Added: In-app support for WebDAV sync (Nextcloud, Synology, etc) [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🧩 Added: Support for USB YubiKeys on macOS (native MacCatalyst builds only, won't work in iPad emulation mode on Apple Silicon)",
+                    "type": 1
+                },
+                {
+                    "title": "🧩 Added: Ability to copy references to entry fields (tap the field to see the copy button) [thanks, u/RandomComputerFellow]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Added a button to delete custom entry fields [thanks, YJ]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Added a 48-hour database timeout [thanks, BM]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Display full Pro app name on the home screen",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Minor UI improvements focused on macOS",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Updated all translations",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: On devices restored from a backup, DB loading froze at 60% [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: \"Save as\" on sync conflict could overwrite the original",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: macOS: Too frequent Touch ID popups. Now one needs to click a 'Touch ID unlock' button first [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Reset keychain when memory protection key disappears",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: macOS: Erase app settings after reinstallation [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Loading DBs with several nameless attachments [thanks, u/mindhaq]",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "version": "1.35",
+            "releaseDate": "2022-06-22T00:00:00Z",
+            "items": [
+                {
+                    "title": "🛠 Changed: Attachment previews are no longer restricted in free version",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Changed: Database timeout 'Never' is shown as a free option (worked as such even before)",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Changed: Instead, the app will suggest making a donation once in a while",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Changed: Password generator: fixed sets can be deactivated instead of excluded [thanks, Fabian]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: AutoFill: context menu of the Cancel button will show the diagnostic log",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Updated all translations",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: macOS: sensitive data will not show up in Keychain Access app anymore",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Extended diagnostics for AutoFill not showing local DBs [thanks, Dennis]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Minor UI fixes here and there",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "version": "1.34",
+            "releaseDate": "2022-06-02T00:00:00Z",
+            "items": [
+                {
+                    "title": "🧩 Added: New password/passphrase generator [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🧩 Added: Random generator is now available in context menus in entry/group editor (#155) [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🧩 Added: Quick popup with random passwords in database picker (#155) [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Updated all translations ",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: AutoFill could not access some local files (regression in 1.32.110) [thanks, Chris]",
+                    "type": 1
+                },
+            ]
+        },
+        {
+            "version": "1.33",
+            "releaseDate": "2022-05-25T00:00:00Z",
+            "items": [
+                {
+                    "title": "🛠 Improved: Local files should load quickly, no matter what",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Updated all translations",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: DB opening stuck at \"Downloading the database… 0%\" [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: It was impossible to open local files with an unresponsive SMB share in the system (fixes #109) [thanks, everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Parsing misformatted kdbx3/4 timestamps [thanks Jim]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Reporting missing/unresponsive file providers on iOS 15+",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Minor UI fixes here and there",
+                    "type": 1
+                },
+            ]
+        },
+        {
+            "version": "1.32",
+            "releaseDate": "2022-05-03T00:00:00Z",
+            "items": [
+                {
+                    "title": "🐞 Fixed: Could not export or delete local files (regression in 1.31.105) [thanks,everyone]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: macOS: Replaced DB 'Export' menu with 'Reveal in Finder'",
+                    "type": 1
+                },
+            ]
+        },
+        {
+            "version": "1.31",
+            "releaseDate": "2022-04-30T00:00:00Z",
+            "items": [
+                {
+                    "title": "🛠 Improved: Memory consumption when reading/writing files",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Made `TOTP Settings` field optional (closes #225) [thanks, plus-or-minus]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Hidden redundant OTP config fields from entry viewer (closes #218) [thanks, plus-or-minus]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: AutoFill will compare port numbers when comparing URLs [thanks, Z.X.]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Improved: Wording of some UI elements (#219, #228) [thanks, plus-or-minus and Taxyovio]",
+                    "type": 1
+                },
+                {
+                    "title": "🛠 Changed: Disabled spelling autocorrection in entry editor (closes #223) [thanks, everyone]",
                     "type": 1
                 },
                 {
@@ -29,13 +231,53 @@
                     "type": 1
                 },
                 {
+                    "title": "🐞 Fixed: Keyboard focus on app launch [thanks, Nelson and raja]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Loading cached files when there is an unreachable SMB server in the system (related #109)",
+                    "type": 1
+                },
+                {
                     "title": "🐞 Fixed: Some icons did not immediately refresh when changing the icon set [thanks, Kamil]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: File info sometimes did not refresh",
                     "type": 1
                 },
                 {
                     "title": "🐞 Fixed: Some errors appeared as codes instead of human-readable messages [thanks, everyone]",
                     "type": 1
-                }
+                },
+                {
+                    "title": "🐞 Fixed: Cleaned up redundant menu items on macOS",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Readability of last characters in expanded fields [thanks, Sachin]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Parsing of MasterKeyChangeForceOnce tag in KDBX databases [thanks, M.H.]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Closing macOS AutoFill dialog with Escape key [thanks, u/TCIHL]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Parsing of MasterKeyChangeForceOnce tag in KDBX databases [thanks, M.H.]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: removed obsolete error description for read-only OneDrive [thanks, Thomas]",
+                    "type": 1
+                },
+                {
+                    "title": "🐞 Fixed: Minor UI improvements here and there [thanks, everyone]",
+                    "type": 1
+                },
             ]
         },
         {

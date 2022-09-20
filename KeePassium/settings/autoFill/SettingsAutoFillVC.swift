@@ -13,11 +13,6 @@ protocol SettingsAutoFillViewControllerDelegate: AnyObject {
 }
 
 final class SettingsAutoFillVC: UITableViewController {
-    private let setupGuideURL_iOS =
-        URL(string: "https://keepassium.com/apphelp/how-to-set-up-autofill-ios/")!
-    private let setupGuideURL_macOS =
-        URL(string: "https://keepassium.com/apphelp/how-to-set-up-autofill-macos/")!
-    
     weak var delegate: SettingsAutoFillViewControllerDelegate?
     
     @IBOutlet private weak var setupInstructionsCell: UITableViewCell!
@@ -27,7 +22,9 @@ final class SettingsAutoFillVC: UITableViewController {
     
     @IBOutlet private weak var quickTypeLabel: UILabel!
     @IBOutlet private weak var quickTypeSwitch: UISwitch!
+    @IBOutlet private weak var copyTOTPLabel: UILabel!
     @IBOutlet private weak var copyTOTPSwitch: UISwitch!
+    @IBOutlet private weak var perfectMatchLabel: UILabel!
     @IBOutlet private weak var perfectMatchSwitch: UISwitch!
     @IBOutlet private weak var quickAutoFillPremiumBadge: UIImageView!
     @IBOutlet private weak var quickAutoFillPremiumBadgeWidthConstraint: NSLayoutConstraint!
@@ -50,6 +47,9 @@ final class SettingsAutoFillVC: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title = LString.titleAutoFillSettings
+        copyTOTPLabel.text = LString.titleCopyOTPtoClipboard
+        perfectMatchLabel.text = LString.titleAutoFillPerfectMatch
         settingsNotifications.startObserving()
         refresh()
     }
@@ -94,9 +94,8 @@ final class SettingsAutoFillVC: UITableViewController {
     
     
     private func didPressSetupInstructions() {
-        let url = ProcessInfo.isRunningOnMac ? setupGuideURL_macOS : setupGuideURL_iOS
         URLOpener(AppGroup.applicationShared).open(
-            url: url,
+            url: URL.AppHelp.autoFillSetupGuide,
             completionHandler: { success in
                 if !success {
                     Diag.error("Failed to open help article")

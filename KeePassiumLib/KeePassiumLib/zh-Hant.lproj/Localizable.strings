@@ -1,8 +1,17 @@
+/* Menu item that shows info about KeePassium app */
+"[About/altTitle]" = "關於 KeePassium";
+
+/* Copyright notice */
+"[About/CopyrightAuthor]" = "©Andrei Popleteev";
+
 /* Suggestion/hint for available user action */
 "[Accessibility] Double tap to copy to clipboard" = "點兩下複製至剪貼板";
 
 /* Title of a setting option: font size */
 "[Appearance/TextSize/title]" = "文字大小";
+
+/* Group of settings for user interface appearance (text size, icons, etc) */
+"[Appearance/title]" = "界面外觀";
 
 /* Action/button to unlock the App Lock with passcode */
 "[AppLock] Unlock" = "解鎖";
@@ -82,6 +91,9 @@
 /* Notification: an item has been copied to clipboard */
 "[Clipboard/Copy/notification]" = "已複製";
 
+/* Subtitle for `Contact Us`. Keep it short. */
+"[ContactUs/subtitle]" = "建議? 問題? 讓我們知道!";
+
 /* Error message about AES cipher. [errorCode: Int] */
 "[CryptoError] AES decryption error (code %d)" = "AES 解密錯誤 (代碼 %d)";
 
@@ -122,7 +134,7 @@
 "[Database/Delete/Confirm/text] Delete database file?\n Make sure you have a backup." = "刪除資料庫文件?\n 請確保您有備份檔案!";
 
 /* Notification when user tries to copy data from KDBX to older KDB database. */
-"[Database/LesserTargetFormat/warning]" = "This is an older database format, some data might be lost.";
+"[Database/LesserTargetFormat/warning]" = "這是舊版的資料庫格式，有些資料也許會遺失";
 
 /* Error message */
 "[Database/Load/Error] Cannot find database file" = "找不到資料庫檔案";
@@ -143,7 +155,7 @@
 "[Database/Load/Error] Unrecognized database format" = "未知的資料庫格式";
 
 /* Message shown after we show a cached local database instead of the (unavailable) original database. */
-"[Database/Loading/FromCache/text]" = "The database is unreachable.\nThis is its latest local copy.";
+"[Database/Loading/FromCache/text]" = "無法取得資料庫，此處顯示最新的本地暫存檔";
 
 /* Message shown if current database cannot be edited */
 "[Database/Loading/ReadOnly/text]" = "資料庫僅供讀取";
@@ -206,25 +218,25 @@
 "[Database/Saving/Status] Saving..." = "正在保存...";
 
 /* File settings parameter: time after which file will be considered unreachable. Example: `Consider File Unreachable: in 10 seconds`.) */
-"[Database/Settings/ConsiderFileUnreachable/title]" = "Consider File Unreachable";
+"[Database/Settings/ConsiderFileUnreachable/title]" = "檔案視為無法取得";
 
 /* Title: what to do when (remote) file cannot be loaded. (For example: `If File is Unreachable: Show Error`.) */
-"[Database/Settings/FallbackStrategy/ShowError/title]" = "Show Error";
+"[Database/Settings/FallbackStrategy/ShowError/title]" = "顯示錯誤";
 
 /* File settings parameter: what to do when (remote) file cannot be loaded. (For example: `If File is Unreachable: Use Local Copy`.) */
-"[Database/Settings/FallbackStrategy/title]" = "If File is Unreachable";
+"[Database/Settings/FallbackStrategy/title]" = "若無法取得檔案";
 
 /* Title: what to do when (remote) file cannot be loaded. (For example: `If File is Unreachable: Use Local Copy`.) */
-"[Database/Settings/FallbackStrategy/UseCache/title]" = "Use Local Copy";
+"[Database/Settings/FallbackStrategy/UseCache/title]" = "使用本機暫存檔";
 
 /* Title of settings section (read-only, backup-able, etc) */
-"[Database/Settings/FileAccess/title]" = "File Access";
+"[Database/Settings/FileAccess/title]" = "檔案存取";
 
 /* File setting title, whether the file can be modified (yes/no). */
-"[Database/Settings/ReadOnly/title]" = "Read Only";
+"[Database/Settings/ReadOnly/title]" = "唯讀";
 
 /* Title of database-related settings screen */
-"[Database/Settings/title]" = "Database Settings";
+"[Database/Settings/title]" = "資料庫設定";
 
 /* Action/button to switch from current to some other database. */
 "[Database/Switch/action]" = "切換資料庫";
@@ -421,6 +433,12 @@
 /* Error message: user provided a wrong master key for decryption. */
 "[DatabaseError] Invalid password or key file" = "錯誤的密碼或者金鑰檔案";
 
+/* Subtitle for `Diagnostic Log`. Keep it short. */
+"[DiagLog/subtitle]" = "用於給作者排除故障";
+
+/* Title of the diagnostic info screen */
+"[DiagLog/title]" = "診斷日誌";
+
 /* Notification/confirmation message */
 "[Diagnostics] Diagnostic log has been copied to clipboard." = "診斷日誌複製到剪貼簿成功。";
 
@@ -567,6 +585,9 @@
 
 /* Title of a setting: is the file exluded from iCloud/iTunes backup. For example: `Exclude From Backup: <Yes>` */
 "[FileInfo/isExcludedFromBackup/title]" = "從iCloud / iTunes備份中排除";
+
+/* Title of a dialog with file details (name, size, dates) */
+"[FileInfo/title]" = "檔案資訊";
 
 /* Error message [reason: String] */
 "[FileKeeper] Failed to delete file. Reason: %@" = "刪除檔案錯誤。原因:%@";
@@ -862,6 +883,9 @@
 /* Generic title of in-app help article */
 "[Help Viewer/title]" = "幫助";
 
+/* Name of an entry field. Acronym `HOTP` should not be translated. */
+"[HOTP/FieldName]" = "一次性密碼 (HOTP)";
+
 /* Notification that an archived/historical item (e.g entry) has been successfully restored */
 "[Item/History/Restored]" = "先前的版本已經還原";
 
@@ -900,6 +924,9 @@
 
 /* Menu item: show information about file (name, size, dates) */
 "[Menu/FileInfo/title]" = "檔案資訊";
+
+/* Name of an entry field */
+"[OTP/FieldName]" = "一次性密碼";
 
 /* Error shown when scanned QR code cannot be used for OTP */
 "[OTP/Scan/InvalidData]" = "此 QR code 無法用於 OTP 設定。";
@@ -1036,6 +1063,9 @@
 /* Status: validity period of once-and-forever premium */
 "[Premium/status] Valid forever" = "永遠有效";
 
+/* Status when the user has a premium version */
+"[Premium/Status/title]" = "進階版本";
+
 /* Subscription conditions */
 "[Premium/Subscription/Legal/text]" = "在確認購買時，將會從您的Apple ID帳戶中收取付款。 \n\n除非在到期前至少24小時取消，否則訂閱會自動續訂。您的帳戶將在到期前24小時內收取續訂費用。 \n\n您可以在購買後轉到App Store上的帳戶設置來管理和取消訂閱。";
 
@@ -1124,10 +1154,16 @@
 "[PremiumFeature/Preview/title] Preview Attachments" = "附件預覽";
 
 /* Description/call to action for the `Quick AutoFill` premium feature. */
-"[PremiumFeature/QuickAutoFill/description]" = "Fill out login forms with a single tap, without even opening KeePassium.";
+"[PremiumFeature/QuickAutoFill/description]" = "一鍵填寫登入表單，無需開啟 KeePassium。";
 
 /* Title of a premium feature: show relevant AutoFill entries right under the input field */
-"[PremiumFeature/QuickAutoFill/title]" = "Quick AutoFill";
+"[PremiumFeature/QuickAutoFill/title]" = "快速自動填寫密碼";
+
+/* A brief summary of the privacy policy (for offline mode) */
+"[PrivacyPolicy/Offline/text]" = "KeePassium不會對任何個人資料收集或分析，也不會與任何人分享。";
+
+/* Section: privacy policy */
+"[PrivacyPolicy/title]" = "隱私權政策";
 
 /* Explanation/notification when a long-running operation was cancelled by user */
 "[Progress/CancellationReason] Cancelled by user" = "已被使用者取消";
@@ -1136,13 +1172,19 @@
 "[Progress/CancellationReason/lowMemory]" = "沒有足夠的記憶體供繼續程式繼續。\n較大的資料庫或過於消耗記憶體的資料庫設置(Argon2記憶體參數) 可能會發生這種情況。";
 
 /* Description of the Quick AutoFill feature. */
-"[QuickAutoFill/description]" = "Quick AutoFill shows relevant entries right next to the password field, without opening KeePassium.";
+"[QuickAutoFill/description]" = "快速自動填寫密碼可在密碼欄位旁顯示相關項目，無需開啟 KeePassium。";
 
 /* Name of a feature that shows relevant entries directly next to the login/password forms. */
-"[QuickAutoFill/title]" = "Quick AutoFill";
+"[QuickAutoFill/title]" = "快速自動填寫密碼";
 
 /* Name of an input field for entering the password again */
 "[Repeat Password/Field/title]" = "請重複輸入密碼";
+
+/* Call to action (protect the app from unauthorized access) */
+"[Settings/AppLoc/Activate/callToAction]" = "啟用應用解鎖密碼";
+
+/* Description of `Activate app protection` call to action. */
+"[Settings/AppLock/Activate/description]" = "保護KeePassium免受未經授權的訪問。";
 
 /* Settings switch: whether AppLock is allowed to use Touch ID/Face ID. Example: 'Use Touch ID'. [biometryTypeName: String] */
 "[Settings/AppLock/Biometric/title] Use %@" = "使用 %@";
@@ -1158,6 +1200,9 @@
 
 /* Settings: subtitle of the `App Protection` section when biometric auth is not available. */
 "[Settings/AppLock/subtitle] App Lock, passcode, timeout" = "應用鎖定, 應用解鎖密碼, 逾時";
+
+/* Settings section: protection of the app from unauthorized access */
+"[Settings/AppLock/title]" = "應用保護";
 
 /* A description/subtitle for Settings/AppLockTimeout options that trigger when the user has been idle for a while. For example: 'AppLock Timeout: 3 seconds (After last interaction) */
 "[Settings/AppLockTimeout/description] After last interaction" = "沒操作應用程式";
@@ -1178,13 +1223,25 @@
 "[Settings/AppLockTimeout/shortTitle] Never" = "永不";
 
 /* Action that opens system settings or instructions */
-"[Settings/AutoFill/Activate/action]" = "Activate AutoFill";
+"[Settings/AutoFill/Activate/action]" = "啟用自動填寫密碼";
 
 /* Description for the AutoFill setup instructions */
-"[Settings/AutoFill/Activate/description]" = "Before first use, you need to activate AutoFill in system settings.";
+"[Settings/AutoFill/Activate/description]" = "首度使用前，你需要打開系統設定中的「自動填寫密碼」";
+
+/* Title of an option: copy one-time password to clipboard when using AutoFill */
+"[Settings/AutoFill/CopyOTP/title]" = "複製 一次性密碼OTP 到剪貼板";
 
 /* Title of a help article on how to activate AutoFill. */
-"[Settings/AutoFill/Setup Guide/title]" = "AutoFill Setup Guide";
+"[Settings/AutoFill/Setup Guide/title]" = "自動填寫密碼設定教學";
+
+/* Title of AutoFill settings screen */
+"[Settings/AutoFill/title]" = "自動填寫密碼";
+
+/* Title of an option: automatically use the single best match found by AutoFill search */
+"[Settings/AutoFill/UsePerfectMatch/title]" = "自動填入合適的結果";
+
+/* Option in settings: whether to open the last used database automatically on start. */
+"[Settings/AutoOpenPreviousDatabase/title]" = "自動開啟上次使用的資料庫";
 
 /* Action to delete all backup files from the app. `ALL` is in capitals as a highlight. [backupFileCount: Int] */
 "[Settings/Backup] Delete ALL Backup Files (%d)" = "刪除所有備份儅案(%d)";
@@ -1219,6 +1276,9 @@
 /* An option in Settings. Will be shown as 'Clipboard Timeout: Never' */
 "[Settings/ClipboardTimeout/shortTitle] Never" = "永不";
 
+/* Title of a settings section: backup of databases */
+"[Settings/DatabaseBackup/title]" = "資料庫備份";
+
 /* Description of the Database Lock Timeout */
 "[Settings/DatabaseLockTimeout/description] If you are not interacting with the app for some time, the database will be closed for your safety. To open it, you will need to enter its master password again." = "如果您在一段時間內沒有與KeePassium程式交互, 資料庫將會自動關閉, 以確保您的安全。如果重新打開KeePassium程式您需要重新輸入主密碼。";
 
@@ -1236,6 +1296,12 @@
 
 /* An option in Settings. Will be shown as 'Database Lock: Timeout: Never' */
 "[Settings/DatabaseLockTimeout/shortTitle] Never" = "永不";
+
+/* Subtitle for `Data Protection` section in settings */
+"[Settings/DataProtection/subtitle]" = "主金鑰, 金鑰文件";
+
+/* Settings section: protection of databases, their keys and data inside them */
+"[Settings/DataProtection/title]" = "資料保護";
 
 /* An option in Group Viewer settings. Refers fo the most recent time when the entry was modified. Will be shown as 'Entry Subtitle: Last Modified Date'. */
 "[Settings/EntryListDetail/longTitle] Last Modified Date" = "上次修改的日期";
@@ -1264,17 +1330,20 @@
 /* Title of list view configuration screen */
 "[Settings/ListSettings/title]" = "列表設置";
 
+/* Section title in settings */
+"[Settings/Search/title]" = "搜尋";
+
 /* Title of a sort options list. Example: 'Sort by: Name' */
-"[SortBy]" = "Sort By";
+"[SortBy]" = "排序方式";
 
 /* List sorting option. Example: 'Sort by: Date Created' */
-"[SortBy/DateCreated]" = "Date Created";
+"[SortBy/DateCreated]" = "按建立日期";
 
 /* List sorting option. Example: 'Sort by: Date Modified' */
-"[SortBy/DateModified]" = "Date Modified";
+"[SortBy/DateModified]" = "按編輯日期";
 
 /* List sorting option (for file names). Example: 'Sort by: Name' */
-"[SortBy/FileName]" = "Name";
+"[SortBy/FileName]" = "按檔名";
 
 /* List sorting option (for groups and entries). Example: 'Sort by: Title' */
 "[SortBy/ItemTitle]" = "標題";
@@ -1315,6 +1384,9 @@
 /* Call to action, title of the tip box/donation screen. */
 "[TipBox/title/3]" = "支持 KeePassium";
 
+/* Name of an entry field. Acronym `TOTP` should not be translated. */
+"[TOTP/FieldName]" = "一次性密碼 (TOTP)";
+
 /* Human-readable file location. The file is situated either online / in cloud storage, or on the same device, but in some other app. Example: 'File Location: Cloud storage / Another app' */
 "[URLReference/Location] Cloud storage / Another app" = "雲端存檔 / 其他app應用";
 
@@ -1350,6 +1422,9 @@
 
 /* Warning message when the user tries to use a database as a key file */
 "KeePass database should not be used as key file. Please pick a different file." = "KeePass資料庫檔案不應該當作金鑰檔案使用。 請選擇其他文件。";
+
+/* Placeholder shown when there are no database files available */
+"No database files" = "沒有資料庫檔案";
 
 /* Settings switch: whether to include backup copies in the file list */
 "Show Backup Files" = "顯示備份檔案";

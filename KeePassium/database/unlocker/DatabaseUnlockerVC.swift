@@ -9,6 +9,7 @@
 import KeePassiumLib
 
 protocol DatabaseUnlockerDelegate: AnyObject {
+    func shouldDismissFromKeyboard(_ viewController: DatabaseUnlockerVC) -> Bool
     func willAppear(viewController: DatabaseUnlockerVC)
     
     func didPressSelectKeyFile(
@@ -28,11 +29,7 @@ protocol DatabaseUnlockerDelegate: AnyObject {
         in viewController: DatabaseUnlockerVC)
 }
 
-final class DatabaseUnlockerVC: UIViewController, Refreshable {
-
-    private let forgottenPasswordHelpURL =
-        URL(string: "https://keepassium.com/apphelp/invalid-database-password/")!
-    
+final class DatabaseUnlockerVC: UIViewController, Refreshable {    
     @IBOutlet private weak var databaseLocationIconImage: UIImageView!
     @IBOutlet private weak var databaseFileNameLabel: UILabel!
     @IBOutlet private weak var inputPanel: UIView!
@@ -63,7 +60,9 @@ final class DatabaseUnlockerVC: UIViewController, Refreshable {
     
     private var progressOverlay: ProgressOverlay?
 
-    override var canDismissFromKeyboard: Bool { return false }
+    override var canDismissFromKeyboard: Bool {
+        return delegate?.shouldDismissFromKeyboard(self) ?? false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +72,13 @@ final class DatabaseUnlockerVC: UIViewController, Refreshable {
         unlockButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
         passwordField.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        keyFileField.maskedCorners = []
         hardwareKeyField.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+
+        #if targetEnvironment(macCatalyst)
+        keyFileField.cursor = .arrow
+        hardwareKeyField.cursor = .arrow
+        #endif
         
         keyboardLayoutConstraint.layoutCallback = { [weak self] in
             self?.view.layoutIfNeeded()
@@ -205,7 +210,7 @@ final class DatabaseUnlockerVC: UIViewController, Refreshable {
     
     private func showInvalidPasswordHelp() {
         let urlOpener = URLOpener(self)
-        urlOpener.open(url: forgottenPasswordHelpURL) { [weak self] didOpen in
+        urlOpener.open(url: URL.AppHelp.invalidDatabasePassword) { [weak self] didOpen in
             if !didOpen {
                 self?.didPressErrorDetails()
             }
